@@ -1,3 +1,6 @@
+
+
+
 /*
 html5doctor.com Reset Stylesheet
 v1.6.1
@@ -29,6 +32,7 @@ time, mark, audio, video {
 
 body {
     line-height:1;
+    font-family:'Source Sans Pro', sans-serif;
 }
 
 article,aside,details,figcaption,figure,
@@ -101,6 +105,8 @@ input, select {
     vertical-align:middle;
 }
 
+
+
 /*****************************************************************************
     Layout
 *****************************************************************************/
@@ -112,6 +118,7 @@ IMG{max-width:100%;}
     width:1440px;
     margin:0 auto;
     max-width:86%;
+    position: relative;
 }
 .ColLeft{
     width:50%;
@@ -124,4 +131,270 @@ IMG{max-width:100%;}
     padding: 22px 42px 22px 0px;
     display: inline-block;
     text-align: right;
+}
+.Banner{
+    background-color:#6ee8ff;
+}
+.Banner FIGURE{
+    width: 100%;
+    height: 480px;
+    position: relative;
+}
+.Banner FIGURE IMG{
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 10;
+}
+.Banner figcaption{
+    position: absolute;
+    left:132px;
+    bottom:48px;
+    z-index: 20;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size:64px;
+    color:#ffffff;
+    text-align:left;
+}
+.UserName{
+    font-family:'Source Sans Pro', sans-serif;
+    font-size:24px;
+    font-weight: 500;
+    color:#616161;
+    letter-spacing:-0.15px;
+}
+.Points{
+    background:#ededed;
+    border-radius:100px;
+    width:103px;
+    /* height:48px; */
+    font-size:24px;
+    color:#616161;
+    letter-spacing:-0.15px;
+    text-align:center;
+    font-weight: 400;
+    padding: 5px 15px;
+    margin: 0 0 0 10px;
+}
+.Points IMG{
+    vertical-align: middle;
+    margin: 0 0 0 6px;
+} 
+.UserName EM{
+    font-style: normal;
+    font-size: 14px;
+}
+
+/*FILTERS & PAGINATION*/
+.UserActions{
+   width:100%;
+   padding:65px 0 25px;
+   border-bottom:1px solid #D9D9D9;
+   background: #DDD;
+}
+/*PRODUCTS*/
+.SectProds .container{
+    width: 1175px;
+    max-width: 80%;
+}
+.FullWidth{
+    width: 100%;
+}
+.Products{
+    width: 100%;
+    padding: 18px 0 34px;
+}
+.Product{
+    width:24.25%;
+    max-width: 277px;
+    height: 277px;
+    margin:0 0 1.9% 1.9%;
+    padding: 24px;
+    display: inline-block;
+    box-shadow: 0 7px 20px 0 #CCC;
+    -moz-box-shadow: 0 7px 20px 0 #CCC;
+    -webkit-box-shadow: 0 7px 20px 0 #CCC;
+    -o-box-shadow: 0 7px 20px 0 #CCC;
+    background: #FFF;
+    cursor:pointer;
+    position: relative;
+}
+.Product:nth-child(4n-7) {
+    margin-left:0; 
+}
+.Product FIGURE{
+    width: 100%;
+    height: 167px;
+    text-align: center;
+    vertical-align: bottom;
+}
+.Product FIGURE IMG{
+   max-width: 100%;
+   display: inline-block;
+}
+.Product .Info{
+   width: 100%;
+   margin:0px 0 0;
+   padding: 24px 0 0;
+   border-top:1px solid #D9D9D9;
+}
+.Product P{
+    font-size:16px;
+    color:#a3a3a3;
+    letter-spacing:-0.04px;
+    text-align:left;
+}
+.Product H4{
+    margin:10px 0 0;
+    font-size:18px;
+    font-weight: 400;
+    color:#616161;
+    letter-spacing:-0.04px;
+    text-align:left;
+}
+.Product .Icons{
+    position: absolute;
+    top:12px;
+    right:12px;
+    width: 100%;
+}
+.Product .Icon{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    right: 0;
+    z-index: 10;
+}
+.Product .Icon.Cart{
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    background: url(assets/icons/buy-blue.svg) top right no-repeat;
+    background-size: contain;
+}
+.Product:hover .Icon.Cart{
+    background: url(assets/icons/buy-white.svg) top right no-repeat;
+    background-size: contain;
+}
+.Product .Icon.PointsLess{
+    font-size:14px;
+    vertical-align: middle;
+    background-color: rgba(128, 128, 128, 30);
+    color: rgba(128, 128, 128, 30);
+    padding: 11px 9px 9px 17px;
+    border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 50px 50px 50px 50px;
+
+}
+.Product .Icon.PointsLess STRONG{
+    color:#FFF;    
+    letter-spacing:-0.03px;
+    text-align:right;
+    font-weight: 400;
+    margin: 0 5px 0 0;
+}
+.Product .Icon.PointsLess IMG{
+    vertical-align: middle;
+    width: 24px;
+}
+.Product .Hover{
+    opacity: 0;
+    position: absolute;
+    top:100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    /* background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, rgb(45, 220, 251)),
+	color-stop(0.61, rgb(68, 196, 243))
+);
+background-image: -o-linear-gradient(bottom, rgb(45, 220, 251) 0%, rgb(68, 196, 243) 61%);
+background-image: -moz-linear-gradient(bottom, rgb(45, 220, 251) 0%, rgb(68, 196, 243) 61%);
+background-image: -webkit-linear-gradient(bottom, rgb(45, 220, 251) 0%, rgb(68, 196, 243) 61%);
+background-image: -ms-linear-gradient(bottom, rgb(45, 220, 251) 0%, rgb(68, 196, 243) 61%);
+background-image: linear-gradient(to bottom, rgb(45, 220, 251) 0%, rgb(68, 196, 243) 61%); */
+    /*alpha*/
+    background: -moz-linear-gradient(top,  rgba(45,219,251,0.85) 0%, rgba(68,197,243,0.85) 100%);
+background: -webkit-linear-gradient(top,  rgba(45,219,251,0.85) 0%,rgba(68,197,243,0.85) 100%);
+background: linear-gradient(to bottom,  rgba(45,219,251,0.85) 0%,rgba(68,197,243,0.85) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b32ddbfb', endColorstr='#b344c5f3',GradientType=0 );
+
+}
+.Product:hover .Hover{
+    top: 0;
+    opacity: 1;
+}
+.vertical-center {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.Hover H5{
+    width: 100%;
+    font-size:36px;
+    font-weight: 400;
+    color:#ffffff;
+    letter-spacing:-0.08px;
+    text-align:center;
+    padding: 0 0 10px;
+}
+.Hover H5 IMG{
+    width: 34px;
+    vertical-align: middle;
+    margin:0 0 0 5px;
+}
+button {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background:#FFF;
+    width:228px;
+    height:42px;
+    font-size:18px;
+    color:#616161;
+    letter-spacing:-0.04px;
+    text-align:center;
+    border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 50px 50px 50px 50px;
+    font-weight: 400;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+button:hover,
+button:focus {
+    background: #616161;
+    color:#FFF;
+}
+
+button:focus {
+    /* outline: 1px solid #fff; 
+    outline-offset: -4px;*/
+    background:#FABA0E;
+    border:none;
+    outline: none;
+    color:#333;
+}
+
+button:active {
+    transform: scale(0.99);
 }

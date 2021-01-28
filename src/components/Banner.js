@@ -8,7 +8,7 @@ function Banner(props) {
     
   return (
 
-    <section>
+    <section className="Banner">
         <div className="container">
             <div className="Col-100">
                 <figure>
