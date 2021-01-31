@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses this image
 import coin from '../assets/icons/coin.svg';
@@ -40,6 +40,7 @@ function Header() {
                     ? ( <strong>
                           {user.name} {" "}
                           <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
+                          <span className="Config">&nbsp;</span>
                         </strong>
                       ) 
                     : <em>cargando usuario...</em>
