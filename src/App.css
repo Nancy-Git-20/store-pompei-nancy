@@ -107,6 +107,11 @@ input, select {
 /*****************************************************************************
     Layout
 *****************************************************************************/
+#AppStore{
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
 IMG{max-width:100%;}
 * {
     box-sizing: border-box;
@@ -225,6 +230,26 @@ HEADER .container,
 .MuiPaginationItem-page.Mui-selected {
     background-color: #6ee8ff !important;
 }
+.MuiInputBase-root{
+    width: 100%;
+}
+.BtnFilterPrice{
+    background-color:rgba(0, 0, 0, 0.05);
+    margin:15px 15px 0;
+} 
+.BtnFilterPrice.active{
+    background-color: #6ee8ff;
+}
+.BtnFilterPrice.Lst{
+    margin-right: 0;
+}
+#FilterAlpha{
+    margin:24px 0px 24px 24px;
+}
+.MuiSelect-select:focus{
+    background: none !important;
+}
+
 /*PRODUCTS*/
 .SectProds .container,
 .Paginate .container{
@@ -252,6 +277,7 @@ HEADER .container,
     background: #FFF;
     cursor:pointer;
     position: relative;
+    overflow: hidden;
 }
 .Product:nth-child(4n-7) {
     margin-left:0; 
@@ -429,4 +455,32 @@ button:focus {
 
 button:active {
     transform: scale(0.99);
+}
+
+
+/****************************************************************************
+    SIDEBAR
+*****************************************************************************/
+.side-bar {
+    position: absolute;
+    top:0;
+    /* right: -600px; */
+    height: 100vh;
+    display: inline-block;
+    border-left: 1px solid  #6ee8ff;;
+    background-color: rgb(255, 255, 255);
+    transition: 0.8s ease;
+    z-index: 100;
+}
+.toggle-menu {
+    height: 50px;
+    border-top-left-radius: 10rem;
+    border-bottom-left-radius: 9rem;
+    width: 10px;
+    position: absolute;
+    outline: none;
+    z-index: 1;
+    background-color: rgba(64, 194, 133, 0.693);
+    border-color: rgba(64, 194, 133, 0.693);
+    border-left: 0;
 }

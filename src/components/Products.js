@@ -50,7 +50,8 @@ function Products() {
                 /> */}
                 <div className="Products">
                     {
-                        productsFetched && filterTerm === 'Todas'  
+                        //productsFetched && filterTerm === 'Todas'  
+                        productsFetched 
                         ? productsList
                         :  <em>cargando productos...</em>
                     }    

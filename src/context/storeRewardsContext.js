@@ -12,19 +12,24 @@ const AppProvider = ({ children }) => {
     const[productsFetched, setProductsFetched] = useState(false);
     const[filterProducts, setFilterProducts] = useState([]);
     const[filterTerm, setFilterTerm] = useState('Todas');
+    const[filterPrice, setFilterPrice] = useState(true);
+    const[filterAlpha, setFilterAlpha] = useState(false);
     const[initPoints, setInitPoints] = useState('');
     const[comboCategory, setComboCategory] = useState([]);
+    const[xPosition, setX] = useState(99);
+    const[history, setHistory ] = useState([]);
+    const[historyFetched, setHistoryFetched] = useState(false);
 
     /* Start Pagination config */
-    const prodctsCount = products.length;
+    const prodctsCount = filterProducts.length;
     let [page, setPage] = useState(1);
     const PER_PAGE = 16;
 
     const count = Math.ceil(prodctsCount / PER_PAGE);
-    const _DATA = usePagination(products, PER_PAGE);
+    const _DATA = usePagination(filterProducts, PER_PAGE);
     //console.log('prodctsCount ', prodctsCount )
 
-    const handleChange = (e, p) => {
+    const handlePageChange = (e, p) => {
         setPage(p);
         _DATA.jump(p);
     };
@@ -42,7 +47,8 @@ const AppProvider = ({ children }) => {
 
     useEffect(() => {
         getUser();
-        getProducts();   
+        getProducts();
+        getHistory();   
     }, []);
 
     const getUser = () => {
@@ -57,14 +63,15 @@ const AppProvider = ({ children }) => {
     const getProducts = (Term) => {
         config.getProducts().then((response) => {
           //console.log('response Prods', response.data);
-          const products = response.data;
-          if (Term) {
-            const filterProd = products.filter((prod) => prod.category === Term);
-            setProducts(filterProd);
-          } else {
-            setProducts(products);
-          }
-          //setProducts(response.data);
+          // const products = response.data;
+          // if (Term && Term !== "Todas") {
+          //   const filterProd = products.filter((prod) => prod.category === Term);
+          //   setProducts(filterProd);
+          // } else {
+          //   setProducts(products);
+          // }
+          setProducts(response.data);
+          filterTerm === "Todas" ? setFilterProducts(response.data) : setFilterProducts([]);
           const cate_names = response.data.map((p) => p.category );
           const comboCategory = [...new Set(cate_names)];
           //console.log('comboCategory ', comboCategory);
@@ -73,12 +80,37 @@ const AppProvider = ({ children }) => {
       });
     }
 
-    const FilterProducts = (Term) => {
+    const getHistory = () => {
+      config.getHistory().then((response) => {
+          console.log('getHistory ', response.data)
+          setHistory(response.data);
+          setHistoryFetched(true);
+      });
+    };
+
+    const FilterProdcts = (Term) => {
       //alert(Term);
-      const newfilterProducts = products.filter((prod) => prod.category === Term);
-      //console.log(newfilterProducts);
-      setFilterProducts(newfilterProducts);
-      console.log('newfilterProducts ', newfilterProducts);
+      if(Term === "Todas"){
+        setFilterProducts(products); setFilterTerm("Todas");
+        setPage(1);
+        _DATA.jump(1);
+      }else{
+        const newfilterProducts = products.filter((prod) => prod.category === Term);
+        setPage(1);
+        _DATA.jump(1);
+        //console.log(newfilterProducts);
+        setFilterProducts(newfilterProducts); setFilterTerm(Term);
+      }
+     
+      //console.log('newfilterProducts ', newfilterProducts);
+
+      // const {hotels, filterh } = this.state;
+      // let ProductsFiltro = [];
+      // ProductsFiltro = products.filter((prod) => prod.category === Term).filter(this.FiltroPrecio);
+      // hotelesFiltro = hotelesFiltro.filter(this.FiltroTamanio);
+      // hotelesFiltro = hotelesFiltro.filter(this.FiltroFechas);
+      // this.setState({ filterh: hotelesFiltro });
+
       // if(filterTerm === "Todas"){
       //   setProducts(response.data);
       //   const cate_names = response.data.map((p) => p.category );
@@ -92,12 +124,61 @@ const AppProvider = ({ children }) => {
       // }
       // setProductsFetched(true);
     }
+   
+    const OrderProdcts = (ValueChecked) => {
+      //console.log('activo? ', ValueChecked);
+      let isActive = ValueChecked; //->order Ascendente - menor a may
+      let orderProds = [];
+      setFilterPrice(ValueChecked);
+      if(isActive){
+        // -> ordenar < a >
+        orderProds = filterProducts.sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
+      }else{
+        orderProds = filterProducts.sort((a, b) => parseFloat(b.cost) - parseFloat(a.cost));
+      }
+      setFilterProducts(orderProds);
+    }
+
+    const OrderAlpha = (ValueAlpha) => {
+      //console.log('activo? ', ValueAlpha);
+      let isActive = ValueAlpha; //->order AZ
+      let orderProds = [];
+      setFilterAlpha(ValueAlpha);
+      
+      if(isActive){
+        // -> ordenar AZ
+        //orderProds = filterProducts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        //orderProds = filterProducts.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
+        //library.sort(function(a,b) {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} ); AZ
+        //orderProds = filterProducts.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} ); 
+        //AZ
+        // let aName = a.name.toLowerCase();
+        // let bName = b.name.toLowerCase();
+        //orderProds = filterProducts.sort(function(a,b) {return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);} ); 
+        orderProds = filterProducts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
+      }else{
+        orderProds = filterProducts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0)).reverse();
+        //filterProducts.sort(function(a,b) {return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);} ).reverse(); 
+      }
+      setFilterProducts(orderProds);
+    }
+
+    const toggleMenuUser = () => {
+        if (xPosition === 99) {
+        setX(70);
+        } else {
+        setX(99);
+        }
+    };
+
 
 
   return (
     <AppContext.Provider value={{ user, setUser, userFetched, setUserFetched, products, setProducts, getProducts, productsFetched, setProductsFetched,
-      FilterProducts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, handleChange, productsList, initPoints, setInitPoints, 
-      comboCategory, setComboCategory }}>
+      FilterProdcts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, PER_PAGE, handlePageChange, productsList,
+      OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, comboCategory, setComboCategory,
+      xPosition, toggleMenuUser, history, setHistory, historyFetched
+      }}>
       {children}
     </AppContext.Provider>
   );

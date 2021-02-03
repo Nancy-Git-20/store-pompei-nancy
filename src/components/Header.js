@@ -4,7 +4,7 @@ import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses 
 import coin from '../assets/icons/coin.svg';
 
 function Header() {
-    const { user, userFetched } = useContext(AppContext);
+    const { user, userFetched, toggleMenuUser } = useContext(AppContext);
     
     //const[user, setUser] = useState();
 
@@ -40,7 +40,7 @@ function Header() {
                     ? ( <strong>
                           {user.name} {" "}
                           <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
-                          <span className="Config">&nbsp;</span>
+                          <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span>
                         </strong>
                       ) 
                     : <em>cargando usuario...</em>

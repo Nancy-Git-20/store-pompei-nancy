@@ -8,6 +8,8 @@ const UserUrlApi = 'https://coding-challenge-api.aerolab.co/user/me';
 
 const ProductsUrlApi = 'https://coding-challenge-api.aerolab.co/products';
 
+const HistoryUrlApi= 'https://coding-challenge-api.aerolab.co/user/history';
+
 // Asi funciona con fetch
 // const headers = {
 //     method: "GET",
@@ -29,4 +31,8 @@ export const getUser = () => {
 
 export const getProducts = () => {
   return axios.get(ProductsUrlApi, { headers });
+};
+
+export const getHistory = () => {
+  return axios.get(HistoryUrlApi, { headers });
 };
