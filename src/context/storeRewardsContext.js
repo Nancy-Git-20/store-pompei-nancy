@@ -16,9 +16,11 @@ const AppProvider = ({ children }) => {
     const[filterAlpha, setFilterAlpha] = useState(false);
     const[initPoints, setInitPoints] = useState('');
     const[comboCategory, setComboCategory] = useState([]);
-    const[xPosition, setX] = useState(99);
+    const[xPosition, setX] = useState(100);
     const[history, setHistory ] = useState([]);
     const[historyFetched, setHistoryFetched] = useState(false);
+    const[redeemProduct, setRedeemProduct] = useState(config.demoProd);
+    const[postResponse, setPostResponse] = useState('');
 
     /* Start Pagination config */
     const prodctsCount = filterProducts.length;
@@ -86,6 +88,21 @@ const AppProvider = ({ children }) => {
           setHistory(response.data);
           setHistoryFetched(true);
       });
+    };
+
+    const sendPostProduct = (productId) => {
+      config.sendRedeemProd(productId)
+        .then((response) => {
+          console.log('response', response.message);
+          //setPostResponse(response.message);
+          setPostResponse('Ha canjeado sus puntos con éxito.');
+          getUser();
+          getHistory();
+        })
+        .catch((error) => {
+          console.log('error', error);
+          setPostResponse('Se ha producido un error.');
+        });
     };
 
     const FilterProdcts = (Term) => {
@@ -164,10 +181,10 @@ const AppProvider = ({ children }) => {
     }
 
     const toggleMenuUser = () => {
-        if (xPosition === 99) {
-        setX(70);
+        if (xPosition === 100) {
+        setX(69);
         } else {
-        setX(99);
+        setX(100);
         }
     };
 
@@ -177,7 +194,7 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider value={{ user, setUser, userFetched, setUserFetched, products, setProducts, getProducts, productsFetched, setProductsFetched,
       FilterProdcts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, PER_PAGE, handlePageChange, productsList,
       OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, comboCategory, setComboCategory,
-      xPosition, toggleMenuUser, history, setHistory, historyFetched
+      xPosition, toggleMenuUser, history, setHistory, historyFetched, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse
       }}>
       {children}
     </AppContext.Provider>

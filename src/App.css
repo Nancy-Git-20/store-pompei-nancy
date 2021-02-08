@@ -197,7 +197,17 @@ HEADER .container,
     vertical-align: middle;
     margin:0 0 0 5px;
     cursor: pointer;
+    animation: rotation 3s infinite linear;
 }
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
 .UserName EM{
     font-style: normal;
     font-size: 14px;
@@ -467,10 +477,14 @@ button:active {
     /* right: -600px; */
     height: 100vh;
     display: inline-block;
-    border-left: 1px solid  #6ee8ff;;
+    border-left: 1px solid  #6ee8ff;
     background-color: rgb(255, 255, 255);
     transition: 0.8s ease;
     z-index: 100;
+    padding: 30px;
+    text-align: center;
+    -webkit-box-shadow: -20px 10px 10px -20px #050505;
+    box-shadow: -20px 10px 10px -20px #050505;
 }
 .toggle-menu {
     height: 50px;
@@ -478,9 +492,171 @@ button:active {
     border-bottom-left-radius: 9rem;
     width: 10px;
     position: absolute;
+    left:0;
     outline: none;
     z-index: 1;
     background-color: rgba(64, 194, 133, 0.693);
     border-color: rgba(64, 194, 133, 0.693);
     border-left: 0;
+}
+.CloseBtn{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor:pointer;
+}
+.Userinfo{
+    width:100%;
+}
+.Userinfo FIGURE{
+    width:200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #F5F5F5;
+    display: inline-block;
+    margin: 0 0 50px;
+}
+.Userinfo .UserName{
+    font-size: 30px;
+} 
+.HistRedeem{
+    padding: 30px;
+}
+.HistRedeem H6{
+    font-size: 24px;
+    font-weight: 300;
+}
+/****************************************************************************
+    MODAL
+*****************************************************************************/
+.modal {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em 1em;
+    z-index: 999999;
+    box-sizing: border-box;
+  }
+  
+  .modal.modal-fade {
+    animation: fade-in 1s 1 linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+  
+  .modal > .modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .modal > .modal-close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #5e5e5e;
+    cursor: pointer;
+    font-size: 1.25em;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.749);
+    border: 1px solid #c3c0c0;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .modal > .modal-close:hover {
+    background: rgba(255, 255, 255, 0.989);
+  }
+  
+  .modal > .modal-body {
+    z-index: 2;
+    position: relative;
+    margin: 0 auto;
+    background-color: #303030;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 100%;
+    width: 50vw;
+    height: 70vh;
+    padding: 15px 20px;
+    color: #c3c0c0;
+  }
+  
+@keyframes fade-in {
+    0% {
+      animation-timing-function: cubic-bezier(0.2242, 0.7499, 0.3142, 0.8148);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+.modal-body H5{
+    font-size: 25px;
+    font-weight: 300;
+    color:#FFFFFF;
+    padding: 10px 0 10px;
+    border-bottom: 1px dashed #FFF;
+}
+.ModalInfo{
+    width: 100%;
+    text-align: center;
+}
+.ModalInfo H6{
+    width: 100%;
+    padding: 30px 0 0;
+    font-size: 30px;
+    font-weight: 300;
+    color:#FFFFFF;
+}
+.ModalInfo P{
+    width: 100%;
+    padding: 20px 0 0;
+    font-size: 20px;
+    font-weight: 300;
+    color:#FFFFFF;
+}
+.ModalInfo STRONG{
+    color:#6ee8ff;
+    font-weight: 400;
+}
+.ModalInfo .Actions{
+    width: 100%;
+    margin: 30px 0 0;
+}
+.ModalInfo .Btn{
+    margin:0 10px;
+    border-style: solid;
+    border-width: 2px;
+    color:#FFF;
+}
+.ModalInfo .Btn.Cancel{
+    border-color:#333;
+    background-color: #666;
+}
+.ModalInfo .Btn.Ok{
+    border-color: #6ee8ff;
+    background-color: deepskyblue;
 }

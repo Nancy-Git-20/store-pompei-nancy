@@ -1,10 +1,28 @@
 import React, {useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
-import logo from '../assets/aerolab-logo.svg';
+import Product from "./Product";
+import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
 
 function Sidebar({width, height, children}) {
     const { user, userFetched, xPosition, toggleMenuUser, history, historyFetched } = useContext(AppContext);
+    //console.log(history.length);
+    let ListRedeem;
+    if( history.length === 0 ){
+      ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
+    }else{
+      ListRedeem = history.map(product => (
+        <Product
+          key={product._id}
+          id={product._id}
+          name={product.name}
+          cost={product.cost}
+          category={product.category}
+          img={product.img.hdUrl}
+        />
+    ));
+    }
+    
 
     //const [xPosition, setX] = React.useState(99);
 
@@ -39,17 +57,32 @@ function Sidebar({width, height, children}) {
         ></button>
 
         <div className="content">
-            <button onClick={() => toggleMenuUser() }>CLOSE X</button>
+            {/* <button onClick={() => toggleMenuUser() }>CLOSE X</button> */}
+            <div className="CloseBtn" onClick={() => toggleMenuUser() }>
+              <svg id="Layer_1" x="0px" y="0px" viewBox="0 0 286.054 286.054" width="40" height="40">
+                <g>
+                  <path style={{fill:'#6ee8ff'}} d="M168.352,142.924l25.28-25.28c3.495-3.504,3.495-9.154,0-12.64l-12.64-12.649
+                    c-3.495-3.486-9.145-3.495-12.64,0l-25.289,25.289l-25.271-25.271c-3.504-3.504-9.163-3.504-12.658-0.018l-12.64,12.649
+                    c-3.495,3.486-3.486,9.154,0.018,12.649l25.271,25.271L92.556,168.15c-3.495,3.495-3.495,9.145,0,12.64l12.64,12.649
+                    c3.495,3.486,9.145,3.495,12.64,0l25.226-25.226l25.405,25.414c3.504,3.504,9.163,3.504,12.658,0.009l12.64-12.64
+                    c3.495-3.495,3.486-9.154-0.009-12.658L168.352,142.924z M143.027,0.004C64.031,0.004,0,64.036,0,143.022
+                    c0,78.996,64.031,143.027,143.027,143.027s143.027-64.031,143.027-143.027C286.054,64.045,222.022,0.004,143.027,0.004z
+                    M143.027,259.232c-64.183,0-116.209-52.026-116.209-116.209s52.026-116.21,116.209-116.21s116.209,52.026,116.209,116.209
+                    S207.21,259.232,143.027,259.232z"/>
+                </g>
+              </svg>
+            </div>
+
             <div className="Userinfo">
                 {/* {children} */}
-                <figure><img alt="User Pic" /></figure>
+                <figure><img src={worker} alt="User Pic" /></figure>
                 <h2 className="UserName">Hola  {" "}
                     {
                         userFetched
                         ? ( <strong>
                                 {user.name} {" "}
                                 <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
-                                <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span>
+                                {/* <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span> */}
                             </strong>
                             ) 
                         : <em>cargando usuario...</em>
@@ -59,9 +92,7 @@ function Sidebar({width, height, children}) {
             <div className="HistRedeem">
                     {
                         historyFetched
-                        ? ( <p>aca productos
-                            </p>    
-                           )
+                        ? ListRedeem
                         : <em>cargando historial...</em>  
                     }
             </div>

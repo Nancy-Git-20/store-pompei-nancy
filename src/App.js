@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import AppProvider from './context/storeRewardsContext';
 import Header from './components/Header';
 import Banner from './components/Banner';
@@ -28,6 +28,8 @@ function App() {
       <PaginationMat />
       <Products />
       <PaginationMat />
+
+     
       
     </div>
     </AppProvider>
