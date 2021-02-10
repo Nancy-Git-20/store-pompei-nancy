@@ -84,8 +84,10 @@ const AppProvider = ({ children }) => {
 
     const getHistory = () => {
       config.getHistory().then((response) => {
-          console.log('getHistory ', response.data)
-          setHistory(response.data);
+          console.log('getHistory ', response.data);
+          const histDesc = response.data.reverse();
+          setHistory(histDesc);
+          //setHistory(response.data);
           setHistoryFetched(true);
       });
     };
@@ -93,7 +95,7 @@ const AppProvider = ({ children }) => {
     const sendPostProduct = (productId) => {
       config.sendRedeemProd(productId)
         .then((response) => {
-          console.log('response', response.message);
+          console.log('response', response.data.message);
           //setPostResponse(response.message);
           setPostResponse('Ha canjeado sus puntos con éxito.');
           getUser();

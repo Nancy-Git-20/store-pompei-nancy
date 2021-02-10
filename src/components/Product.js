@@ -24,7 +24,7 @@ function Product(props) {
         img = localSwitch;
     }
 
-    const redeemProdFn = (id,name,cost) =>{
+    const redeemProdFn = (id,name,cost) => {
         //console.log('id,name,cost ', id, ' ', name, ' ', cost);
         const prod = {
             "id": id,
@@ -36,7 +36,12 @@ function Product(props) {
         modalRedeem.current.open();
     }
 
-    const nuevoSaldo = initPoints - redeemProduct.cost
+    const nuevoSaldo = initPoints - redeemProduct.cost;
+
+    const redeemResetMsgFn = () => {
+        setPostResponse('');
+        modalRedeem.current.close();
+    }
 
   return (
     
@@ -89,20 +94,27 @@ function Product(props) {
             ? (<Modal ref={modalRedeem}>
                 <h5>Redeem now</h5>
                 <div class="ModalInfo">
-                    <h6>¿Está seguro de canjear el producto <strong>{redeemProduct.name}</strong>?</h6>
-                    <p>Se descontarán <strong>{redeemProduct.cost}</strong> puntos de su cuenta.</p>
-                    <p>Su nuevo saldo será de <strong>{nuevoSaldo}</strong> puntos. </p>
+                    
+                    {postResponse === ''
+                    ? (
+                        <div>
+                            <h6>¿Está seguro de canjear el producto <strong>{redeemProduct.name}</strong>?</h6>
+                            <p>Se descontarán <strong>{redeemProduct.cost}</strong> puntos de su cuenta.</p>
+                            <p>Su nuevo saldo será de <strong>{nuevoSaldo}</strong> puntos. </p>
 
-                    <div className="Actions">
-                        <button className="Btn Cancel" onClick={ () => modalRedeem.current.close() }>Cancel</button>
+                            <div className="Actions">
+                                <button className="Btn Cancel" onClick={ () => modalRedeem.current.close() }>Cancel</button>
 
-                        <button className="Btn Ok" onClick={ () => sendPostProduct(redeemProduct.id) }>OK</button>
-                    </div> 
-
+                                <button className="Btn Ok" onClick={ () => sendPostProduct(redeemProduct.id) }>OK</button>
+                            </div> 
+                        </div>
+                    ) : (
                     <div className="Resp">
                         <p> {postResponse} </p>
-                    </div>  
-
+                        <p>Su nuevo saldo es de <strong>{nuevoSaldo}</strong> puntos. </p>
+                        <button className="Btn Cancel" onClick={ () => redeemResetMsgFn() }>Cerrar</button>
+                    </div>
+                    )}
                 </div>
             </Modal>)
             : ''

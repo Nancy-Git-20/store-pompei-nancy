@@ -476,6 +476,7 @@ button:active {
     top:0;
     /* right: -600px; */
     height: 100vh;
+    height: 100%;
     display: inline-block;
     border-left: 1px solid  #6ee8ff;
     background-color: rgb(255, 255, 255);
@@ -521,11 +522,62 @@ button:active {
     font-size: 30px;
 } 
 .HistRedeem{
-    padding: 30px;
+    padding: 30px 0 0;
+}
+.HistRedeem H3{
+    width: 100%;
+    text-align: left;
+    font-size: 23px;
+    font-weight: 300;
+    padding: 0 0 10px;
+    border-bottom: 1px dashed #ccc;
+    margin: 0 0 30px;
 }
 .HistRedeem H6{
     font-size: 24px;
     font-weight: 300;
+}
+.HistRedeem .Product{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 30px;
+    padding: 17px 10px;
+}
+.HistRedeem .Product H4{
+    font-size:20px;
+    margin: 8px 0 0;
+}
+.HistRedeem .Product .Icons,
+.HistRedeem .Product .Hover{
+    display: none;
+}
+.HistRedeem .Product FIGURE {
+    width: 35%;
+    height: auto;
+    float: left;
+    text-align: center;
+    vertical-align: bottom;
+}
+.HistRedeem .Product .Info{
+    border:none;
+    padding: 0px 0 0;
+}
+.HistRedeem .Product P{
+    margin: 8px 0 0;
+}
+.HistRedeem .Product P:first-child{
+    margin:0;
+    font-size: 14px;
+    border-bottom: 1px dashed #CCC;
+    padding: 0 0 3px;
+}
+.btnAll{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    margin: 30px 0px 0;
+    padding: 10px 30px;
+    color:#FFF;
 }
 /****************************************************************************
     MODAL
@@ -659,4 +711,14 @@ button:active {
 .ModalInfo .Btn.Ok{
     border-color: #6ee8ff;
     background-color: deepskyblue;
+}
+.ModalInfo .Resp{
+    width: 100%;
+}
+.ModalInfo .Resp P{
+    padding: 0px 0 30px;
+}
+.ModalInfo .Resp P:first-child{
+    font-size: 30px;
+    padding: 50px 0 30px;
 }

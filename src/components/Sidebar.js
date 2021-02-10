@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
-import Product from "./Product";
+import ProductRedeem from "./ProductRedeem";
 import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
 
@@ -12,12 +12,14 @@ function Sidebar({width, height, children}) {
       ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
     }else{
       ListRedeem = history.map(product => (
-        <Product
+        <ProductRedeem
           key={product._id}
-          id={product._id}
-          name={product.name}
-          cost={product.cost}
+          idOp={product._id}
+          idProd={product.productId}
           category={product.category}
+          cost={product.cost}
+          createDate={product.createDate}
+          name={product.name}
           img={product.img.hdUrl}
         />
     ));
@@ -78,7 +80,7 @@ function Sidebar({width, height, children}) {
                 <figure><img src={worker} alt="User Pic" /></figure>
                 <h2 className="UserName">Hola  {" "}
                     {
-                        userFetched
+                        userFetched 
                         ? ( <strong>
                                 {user.name} {" "}
                                 <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
@@ -91,10 +93,20 @@ function Sidebar({width, height, children}) {
             </div>
             <div className="HistRedeem">
                     {
-                        historyFetched
-                        ? ListRedeem
+                        historyFetched && history.length !== 0
+                        ? ( 
+                            <>
+                              <h3>Productos canjeados:</h3>
+                              <div>{ListRedeem} </div>
+                            </>
+                          )  
                         : <em>cargando historial...</em>  
                     }
+                    {
+                        history.length > 3
+                        ? <button class="btnAll"> Ver todos los productos canjeados</button>
+                        : ''
+                      }    
             </div>
 
         </div>
