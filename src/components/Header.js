@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { NavLink } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
 import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses this image
 import coin from '../assets/icons/coin.svg';
@@ -31,7 +32,9 @@ function Header() {
     <header>
         <div className="container">
             <div className="ColLeft">
-                <h1><a href="#"><img src={logo} alt="Logo"/></a></h1>
+              <NavLink to="/" exact={true} activeClassName="Acti-ve Nav-Link">
+                <h1><img src={logo} alt="Logo"/></h1>
+              </NavLink>  
             </div>
             <div className="ColRight">
                 <h2 className="UserName">Hola  {" "}

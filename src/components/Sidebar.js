@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { Link } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
 import ProductRedeem from "./ProductRedeem";
 import worker from '../assets/worker.png';
@@ -11,7 +12,8 @@ function Sidebar({width, height, children}) {
     if( history.length === 0 ){
       ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
     }else{
-      ListRedeem = history.map(product => (
+      //books.slice(0,2).map
+      ListRedeem = history.slice(3).map(product => (
         <ProductRedeem
           key={product._id}
           idOp={product._id}
@@ -77,7 +79,7 @@ function Sidebar({width, height, children}) {
 
             <div className="Userinfo">
                 {/* {children} */}
-                <figure><img src={worker} alt="User Pic" /></figure>
+                <figure><img src={worker} alt={user.name} /></figure>
                 <h2 className="UserName">Hola  {" "}
                     {
                         userFetched 
@@ -93,20 +95,28 @@ function Sidebar({width, height, children}) {
             </div>
             <div className="HistRedeem">
                     {
-                        historyFetched && history.length !== 0
+                        historyFetched
                         ? ( 
                             <>
                               <h3>Productos canjeados:</h3>
                               <div>{ListRedeem} </div>
+
+                              {history.length > 0
+                                ? (<Link to="/history">
+                                  <button class="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
+                                </Link>)
+                                : ''
+                              }
+
                             </>
                           )  
                         : <em>cargando historial...</em>  
                     }
-                    {
-                        history.length > 3
-                        ? <button class="btnAll"> Ver todos los productos canjeados</button>
+                    {/* {
+                        history.length > 0
+                        ? <button class="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
                         : ''
-                      }    
+                      }     */}
             </div>
 
         </div>

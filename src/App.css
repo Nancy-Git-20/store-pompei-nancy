@@ -511,12 +511,12 @@ button:active {
     width:100%;
 }
 .Userinfo FIGURE{
-    width:200px;
-    height: 200px;
+    width:160px;
+    height: 160px;
     border-radius: 50%;
     background: #F5F5F5;
     display: inline-block;
-    margin: 0 0 50px;
+    margin: 0 0 20px;
 }
 .Userinfo .UserName{
     font-size: 30px;
@@ -543,6 +543,7 @@ button:active {
     height: auto;
     margin: 0 0 30px;
     padding: 17px 10px;
+    cursor: default;
 }
 .HistRedeem .Product H4{
     font-size:20px;
@@ -554,7 +555,7 @@ button:active {
 }
 .HistRedeem .Product FIGURE {
     width: 35%;
-    height: auto;
+    height: 120px;
     float: left;
     text-align: center;
     vertical-align: bottom;
@@ -722,3 +723,46 @@ button:active {
     font-size: 30px;
     padding: 50px 0 30px;
 }
+/****************************************************************************
+    HISTORY
+*****************************************************************************/
+#History{
+    width: 100%;
+    padding: 0 0 50px;
+}
+#History .HistRedeem{
+    text-align: center;
+}
+#History .btnAll.w40{
+    width: 40%;
+}
+/* #History .Product{
+    width: 29.3%;
+    margin: 0 2% 50px;
+    vertical-align: top;
+} */
+.ProdGrid{
+    width:100%;
+    padding:0px;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.ProdGrid .Product{
+    width: 32%;
+    margin: 0 0% 50px;
+    vertical-align: top;
+    
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    text-align: center;
+  }

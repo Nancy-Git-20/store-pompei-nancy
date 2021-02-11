@@ -1,10 +1,11 @@
 import React from 'react';
 import {nameSection} from '../data/config'
-import banner from '../assets/header-x2.png';// Tell Webpack this JS file uses this image
+import banner from '../assets/header-x2.png';
 
 function Banner(props) {
-    //console.log(props)
-    const {bannerAlt} = props;
+    console.log(props)
+    const {bannerAlt,bannerSection} = props;
+    const subSection = bannerSection ? '/'+ bannerSection : '';
     
   return (
 
@@ -13,7 +14,7 @@ function Banner(props) {
             <div className="Col-100">
                 <figure>
                     <img src={banner} alt={bannerAlt}/>
-                    <figcaption>{nameSection}</figcaption>
+                    <figcaption>{nameSection} {subSection}</figcaption>
                 </figure>
             </div>      
         </div>
