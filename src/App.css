@@ -524,15 +524,36 @@ button:active {
 .HistRedeem{
     padding: 30px 0 0;
 }
-.HistRedeem H3{
+.HistRedeem .WrpTitle{
     width: 100%;
-    text-align: left;
-    font-size: 23px;
-    font-weight: 300;
     padding: 0 0 10px;
     border-bottom: 1px dashed #ccc;
     margin: 0 0 30px;
+    text-align: left;
 }
+.HistRedeem H3{
+    width: 48%;
+    text-align: left;
+    font-size: 23px;
+    font-weight: 300;
+   display: inline-block;
+}
+#FilterHistory{
+    display: inline-block;
+    width: 52%;
+    text-align: right;
+    vertical-align: middle;
+}
+#FilterHistory .MuiGrid-item{
+    font-size: 14px !important;
+    font-weight: 300;
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+#FilterHistory .MuiTypography-body1{
+    display: inline-block;
+}
+
 .HistRedeem H6{
     font-size: 24px;
     font-weight: 300;
@@ -766,3 +787,16 @@ button:active {
     flex: 0 0 auto;
     text-align: center;
   }
+/****************************************************************************
+    ADD POINTS
+*****************************************************************************/
+.SliderPoints{
+    width:300px;
+    margin: 80px auto 10px;
+}
+.SliderPoints SPAN.MuiSlider-markLabel{
+    color:#FFF;
+  }
+#RadioPuntos{
+    margin: 40px auto 10px;       
+}

@@ -6,9 +6,17 @@ import Banner from './components/Banner';
 import Sidebar from './components/Sidebar';
 import ProductRedeem from "./components/ProductRedeem";
 
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import {useStyles, AntSwitch} from './data/config';
+
 function History() {
 
-  const { toggleMenuUser, history, historyFetched } = useContext(AppContext);
+  const { toggleMenuUser, history, historyFetched, filterHistory, OrderHistory } = useContext(AppContext);
+  
+  const classes = useStyles();
+
   let ListRedeem;
   if( history.length === 0 ){
     ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
@@ -43,7 +51,20 @@ function History() {
             {historyFetched
                 ? ( 
                     <>
-                      <h3>Productos canjeados:</h3>
+                      <div className="WrpTitle">
+                        <h3>Productos canjeados:</h3>
+                        <FormControl id="FilterHistory" className={classes.formControl}>
+                            <Typography component="div">
+                                <Grid component="label" container alignItems="center" spacing={1}>
+                                <Grid item>Más antiguo</Grid>
+                                <Grid item>
+                                    <AntSwitch checked={filterHistory} onChange={(e) => OrderHistory(e.target.checked)} name="checkedHistory" />
+                                </Grid>
+                                <Grid item>Más reciente</Grid>
+                                </Grid>
+                            </Typography>
+                        </FormControl>
+                      </div>
                       <div className="ProdGrid">{ListRedeem} </div>
 
                       <Link to="/">

@@ -1,16 +1,22 @@
-import React, {useContext, useRef } from 'react';
+import React, {useState, useContext, useRef } from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 import coin from '../assets/icons/coin.svg';
 import localSwitch from '../assets/Switch-x2.png';
 import Modal from './Modal';
+import LineSlider from './LineSlider';
+import Radios from './Radios';
 
 
-function Product(props) {
+function Product(props){
     const { initPoints, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse } = useContext(AppContext);
+    const [pointsAdd, setPointsAdd] = useState('1000');
+    const [warningPoints, setWarningPoints] = useState('');
+
     //console.log('initPoints ', initPoints, ' aa')
     //console.log('props ::: ', props);
     let {id, name, cost, category, img} = props;
     let needPoints = '';
+    //let warningPoints = '';
 
 
     const modalRedeem = useRef(null);
@@ -38,9 +44,33 @@ function Product(props) {
 
     const nuevoSaldo = initPoints - redeemProduct.cost;
 
+    const nuevoSaldoPoints = initPoints + parseInt(pointsAdd);
+
     const redeemResetMsgFn = () => {
         setPostResponse('');
         modalRedeem.current.close();
+    }
+
+    // const handlePoints = (e, newValue) => {
+    //     const NewPuntos = newValue;
+    //     setPointsAdd(NewPuntos);
+    //     if( pointsAdd === 1000 || pointsAdd === 5000 || pointsAdd === 7500 ){    
+    //         setWarningPoints('');
+    //     }else{
+    //         setWarningPoints('Debe seleccionar uno de los valores indicados.');
+    //     }
+    // }
+    //.toFixed(0)parseInt(
+
+    const handlePoints = (e) => {
+        const NewPuntos = e.target.value;
+        console.log(typeof NewPuntos, ' ', NewPuntos);
+        setPointsAdd(NewPuntos);
+        if( pointsAdd === '1000' || pointsAdd === '5000' || pointsAdd === '7500' ){    
+            setWarningPoints('');
+        }else{
+            setWarningPoints('Debe seleccionar uno de los valores indicados.');
+        }
     }
 
   return (
@@ -128,7 +158,46 @@ function Product(props) {
             </div>
         </Modal> */}
         <Modal ref={modalBuy}>
-            pippipip
+        <h5>Buy points</h5>
+                <div class="ModalInfo">
+                    
+                    {'' === ''
+                    ? (
+                        <div>
+                            <h6>¿Necesita adquirir más puntos?</h6>
+                            <p>El sistema permite sumar 1000, 5000 ó 7500 puntos.</p>
+                            <p>Seleccione la cantidad de puntos a incrementar.</p>
+                            
+                            {/* <LineSlider handlePoints={handlePoints} /> */}
+
+                            <Radios pointsAdd={pointsAdd} handlePoints={handlePoints} />
+                            
+                            {warningPoints !== ''
+                                ? (
+                                     <p>{warningPoints}</p>
+                                   )   
+                                : (
+                                    <p>Se sumarán <strong>{pointsAdd}</strong> puntos a su cuenta. <br/>
+                                    Su nuevo saldo será de <strong>{nuevoSaldoPoints}</strong> puntos. </p>
+                                )
+                            }
+
+                            
+
+                            <div className="Actions">
+                                <button className="Btn Cancel" onClick={ () => modalBuy.current.close() }>Cancel</button>
+
+                                <button className="Btn Ok" onClick={ () => sendPostProduct(redeemProduct.id) }>OK</button>
+                            </div> 
+                        </div>
+                    ) : (
+                    <div className="Resp">
+                        <p> {postResponse} </p>
+                        <p>Su nuevo saldo es de <strong>{nuevoSaldo}</strong> puntos. </p>
+                        <button className="Btn Cancel" onClick={ () => redeemResetMsgFn() }>Cerrar</button>
+                    </div>
+                    )}
+                </div>
         </Modal>
     </div>
     

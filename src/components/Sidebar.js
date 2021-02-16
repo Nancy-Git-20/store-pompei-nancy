@@ -5,15 +5,24 @@ import ProductRedeem from "./ProductRedeem";
 import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
 
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import {useStyles, AntSwitch} from '../data/config';
+
+
 function Sidebar({width, height, children}) {
-    const { user, userFetched, xPosition, toggleMenuUser, history, historyFetched } = useContext(AppContext);
+    const { user, userFetched, xPosition, toggleMenuUser, history, historyFetched, filterHistory, OrderHistory } = useContext(AppContext);
+
+    const classes = useStyles();
     //console.log(history.length);
     let ListRedeem;
     if( history.length === 0 ){
       ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
     }else{
       //books.slice(0,2).map
-      ListRedeem = history.slice(3).map(product => (
+      ListRedeem = history.slice(0,3).map(product => (
+      //ListRedeem = history.map(product => (
         <ProductRedeem
           key={product._id}
           idOp={product._id}
@@ -98,7 +107,21 @@ function Sidebar({width, height, children}) {
                         historyFetched
                         ? ( 
                             <>
-                              <h3>Productos canjeados:</h3>
+                              <div className="WrpTitle">
+                                <h3>Productos canjeados:</h3>
+                                <FormControl id="FilterHistory" className={classes.formControl}>
+                                    <Typography component="div">
+                                        <Grid component="label" container alignItems="center" spacing={1}>
+                                        <Grid item>Más antiguo</Grid>
+                                        <Grid item>
+                                            <AntSwitch checked={filterHistory} onChange={(e) => OrderHistory(e.target.checked)} name="checkedHistory" />
+                                        </Grid>
+                                        <Grid item>Más reciente</Grid>
+                                        </Grid>
+                                    </Typography>
+                                </FormControl>
+                              </div>
+
                               <div>{ListRedeem} </div>
 
                               {history.length > 0

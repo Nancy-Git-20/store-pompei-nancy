@@ -19,6 +19,8 @@ const AppProvider = ({ children }) => {
     const[xPosition, setX] = useState(100);
     const[history, setHistory ] = useState([]);
     const[historyFetched, setHistoryFetched] = useState(false);
+    const[filterHistory, setFilterHistory] = useState(true);
+    
     const[redeemProduct, setRedeemProduct] = useState(config.demoProd);
     const[postResponse, setPostResponse] = useState('');
 
@@ -165,19 +167,9 @@ const AppProvider = ({ children }) => {
       setFilterAlpha(ValueAlpha);
       
       if(isActive){
-        // -> ordenar AZ
-        //orderProds = filterProducts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
-        //orderProds = filterProducts.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
-        //library.sort(function(a,b) {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} ); AZ
-        //orderProds = filterProducts.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} ); 
-        //AZ
-        // let aName = a.name.toLowerCase();
-        // let bName = b.name.toLowerCase();
-        //orderProds = filterProducts.sort(function(a,b) {return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);} ); 
         orderProds = filterProducts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
       }else{
         orderProds = filterProducts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0)).reverse();
-        //filterProducts.sort(function(a,b) {return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);} ).reverse(); 
       }
       setFilterProducts(orderProds);
     }
@@ -190,13 +182,26 @@ const AppProvider = ({ children }) => {
         }
     };
 
+    const OrderHistory = (ValueChecked) => {
+      console.log('ordenar Hist?', ValueChecked);
+      let isActive = ValueChecked;
+      let orderHist = [];
+      setFilterHistory(ValueChecked);
+      if(isActive){
+        orderHist = history.reverse();
+      }else{
+        orderHist = history.reverse();
+      }
+
+    }
+
 
 
   return (
     <AppContext.Provider value={{ user, setUser, userFetched, setUserFetched, products, setProducts, getProducts, productsFetched, setProductsFetched,
       FilterProdcts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, PER_PAGE, handlePageChange, productsList,
       OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, comboCategory, setComboCategory,
-      xPosition, toggleMenuUser, history, setHistory, historyFetched, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse
+      xPosition, toggleMenuUser, history, setHistory, historyFetched, filterHistory, setFilterHistory, OrderHistory, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse
       }}>
       {children}
     </AppContext.Provider>
