@@ -127,13 +127,13 @@ HEADER .container,
     width:1440px;
 }    
 .ColLeft{
-    width:50%;
+    width:20%;
     padding: 22px 0 22px 0px;
     display: inline-block;
     text-align: left;
 }
 .ColRight{
-    width:50%;
+    width:80%;
     padding: 22px 0px 22px 0px;
     display: inline-block;
     text-align: right;
@@ -174,7 +174,7 @@ HEADER .container,
 .Points{
     background:#ededed;
     border-radius:100px;
-    width:103px;
+    width:113px;
     /* height:48px; */
     font-size:24px;
     color:#616161;
@@ -183,6 +183,9 @@ HEADER .container,
     font-weight: 400;
     padding: 5px 15px;
     margin: 0 0 0 10px;
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 42px;
 }
 .Points IMG{
     vertical-align: middle;
@@ -206,11 +209,30 @@ HEADER .container,
     to {
       transform: rotate(359deg);
     }
-  }
+}
+.BuyPoints{
+    width:42px;
+    height: 42px;
+    background: url(assets/icons/buy-points.svg) center no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    margin:0 0 0 5px;
+    cursor: pointer;
+}
 
 .UserName EM{
     font-style: normal;
     font-size: 14px;
+}
+.UserName EM.UsName{
+    width: auto;
+    display: inline-block;
+    font-family:'Source Sans Pro', sans-serif;
+    font-size:24px;
+    font-weight: 500;
+    color:#616161;
+    letter-spacing:-0.15px;
 }
 
 /*FILTERS & PAGINATION*/
@@ -712,6 +734,11 @@ button:active {
     font-weight: 300;
     color:#FFFFFF;
 }
+.ModalInfo EM{
+    width: 100%;
+    display: inline-block;
+    margin:7px 0 0;
+}
 .ModalInfo STRONG{
     color:#6ee8ff;
     font-weight: 400;
@@ -775,8 +802,8 @@ button:active {
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
 }
 .ProdGrid .Product{
     width: 32%;
@@ -796,7 +823,77 @@ button:active {
 }
 .SliderPoints SPAN.MuiSlider-markLabel{
     color:#FFF;
-  }
+}
 #RadioPuntos{
     margin: 40px auto 10px;       
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .UserName EM.UsName{
+        width: 100%;
+        margin: 0 0 5px;
+    }
+    .Points{
+        padding: 0 15px;
+    }
+    .Banner .container{
+        max-width: 100%;
+    }
+    .Banner FIGURE{
+        height: 120px;
+    }
+    .Banner figcaption{
+        position: relative;
+        left: initial;
+        bottom: initial;
+        font-size: 35px;
+    }
+    .UserActions{
+        padding: 35px 0 0px;
+    }
+    .BtnFilterPrice{
+        width: 46%;
+        margin: 20px 2% 0;
+    }
+    #FilterAlpha{
+        margin: 24px 0px;
+        width: 100%;
+        text-align: right;
+    }
+    #W-310{
+        width: 100%;
+        margin:10px 0;
+    }
+    .MuiGrid-spacing-xs-1{
+        width: 105px;
+        margin: 0 auto;
+    }
+    .Paginate{
+        width:100%;
+    }
+    .SectProds .container, .Paginate .container{
+        max-width:90%;
+    }
+    .PagInfo{
+        padding: 15px 0px;
+    } 
+    .Product,
+    .Product:nth-child(4n-7) {
+        width: 277px;
+        margin: 0 auto 40px;
+        display: block;
+    }
+
+    .modal > .modal-body{
+        width: 95vw;
+        height: auto;
+    }
+    .side-bar{
+        width: 100vw;
+    }
+
+    /**/    
 }

@@ -17,8 +17,8 @@ function PaginationMat() {
 
   return (
     <div className="Paginate">
-        <div class="container">
-            <div class="FullWidth PagInfo">
+        <div className="container">
+            <div className="FullWidth PagInfo">
                 {/* <p>{page === 1 ? 16 : 32 } of {prodctsCount} products </p> */}
                 {/* <p>{prodctsCount <= PER_PAGE ? prodctsCount : PER_PAGE } of {prodctsCount} products </p> */}
                 <p>{Txt}</p>

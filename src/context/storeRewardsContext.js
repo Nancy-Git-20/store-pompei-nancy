@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import * as config from "../data/config";
 import usePagination from "../components/Pagination";
 import Product from "../components/Product";
+//import usePrevious from '../components/use-previous';
 
 export const AppContext = React.createContext();
 
@@ -16,13 +17,18 @@ const AppProvider = ({ children }) => {
     const[filterAlpha, setFilterAlpha] = useState(false);
     const[initPoints, setInitPoints] = useState('');
     const[comboCategory, setComboCategory] = useState([]);
-    const[xPosition, setX] = useState(100);
+    const[xPosition, setX] = useState(104);
     const[history, setHistory ] = useState([]);
     const[historyFetched, setHistoryFetched] = useState(false);
     const[filterHistory, setFilterHistory] = useState(true);
     
     const[redeemProduct, setRedeemProduct] = useState(config.demoProd);
     const[postResponse, setPostResponse] = useState('');
+    const[pointsResponse, setPointsResponse] = useState('');
+    const[puntosCuentas, setPuntosCuentas] = useState(null);
+
+
+    //const prevPoints = usePrevious(initPoints);
 
     /* Start Pagination config */
     const prodctsCount = filterProducts.length;
@@ -95,11 +101,13 @@ const AppProvider = ({ children }) => {
     };
 
     const sendPostProduct = (productId) => {
+      //console.log(productId)
       config.sendRedeemProd(productId)
         .then((response) => {
           console.log('response', response.data.message);
           //setPostResponse(response.message);
           setPostResponse('Ha canjeado sus puntos con éxito.');
+          setPuntosCuentas(initPoints);
           getUser();
           getHistory();
         })
@@ -108,6 +116,22 @@ const AppProvider = ({ children }) => {
           setPostResponse('Se ha producido un error.');
         });
     };
+
+    const sendPostPoints = (amount) => {
+      config.getPoints(amount)
+        .then((response) => {
+          console.log('response', response.data.message);
+          //setPostResponse(response.message);
+          setPointsResponse('Ha actualizado sus puntos con éxito.');
+          setPuntosCuentas(initPoints);
+          getUser();
+        })
+        .catch((error) => {
+          console.log('error', error);
+          setPointsResponse('Se ha producido un error.');
+        });  
+    }
+
 
     const FilterProdcts = (Term) => {
       //alert(Term);
@@ -175,10 +199,10 @@ const AppProvider = ({ children }) => {
     }
 
     const toggleMenuUser = () => {
-        if (xPosition === 100) {
+        if (xPosition === 104) {
         setX(69);
         } else {
-        setX(100);
+        setX(104);
         }
     };
 
@@ -201,7 +225,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider value={{ user, setUser, userFetched, setUserFetched, products, setProducts, getProducts, productsFetched, setProductsFetched,
       FilterProdcts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, PER_PAGE, handlePageChange, productsList,
       OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, comboCategory, setComboCategory,
-      xPosition, toggleMenuUser, history, setHistory, historyFetched, filterHistory, setFilterHistory, OrderHistory, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse
+      xPosition, toggleMenuUser, history, setHistory, historyFetched, filterHistory, setFilterHistory, OrderHistory, redeemProduct, setRedeemProduct,
+      sendPostProduct, postResponse, setPostResponse, sendPostPoints, pointsResponse, setPointsResponse, puntosCuentas, setPuntosCuentas
       }}>
       {children}
     </AppContext.Provider>

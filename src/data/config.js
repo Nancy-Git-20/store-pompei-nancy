@@ -19,7 +19,9 @@ const ProductsUrlApi = 'https://coding-challenge-api.aerolab.co/products';
 
 const HistoryUrlApi = 'https://coding-challenge-api.aerolab.co/user/history';
 
-const RedeemUrlApi = 'https://coding-challenge-api.aerolab.co/redeem'; 
+const RedeemUrlApi = 'https://coding-challenge-api.aerolab.co/redeem';
+
+const PointsUrlApi = 'https://coding-challenge-api.aerolab.co/user/points';
 
 // Asi funciona con fetch
 // const headers = {
@@ -54,6 +56,13 @@ export const sendRedeemProd = (productId) => {
     productId,
   };
   return axios.post(RedeemUrlApi, body, { headers });
+};
+
+export const getPoints = (amount) => {
+  const body = {
+    amount,
+  };
+  return axios.post(PointsUrlApi, body, { headers });
 };
 
 

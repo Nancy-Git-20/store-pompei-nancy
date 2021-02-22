@@ -17,6 +17,7 @@ const CyanRadio = withStyles({
   })((props) => <Radio color="default" {...props} />);
 
 export default function RadioButtonsGroup({ pointsAdd, handlePoints }) {
+  console.log('pointsAdd', pointsAdd);
   // const [value, setValue] = React.useState("female");
 
   // const handleChange = (event) => {

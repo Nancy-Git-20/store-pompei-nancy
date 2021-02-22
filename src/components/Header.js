@@ -1,11 +1,20 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
 import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses this image
 import coin from '../assets/icons/coin.svg';
+import Modal from './Modal';
+import ModalBuy from './ModalBuy';
 
 function Header() {
     const { user, userFetched, toggleMenuUser } = useContext(AppContext);
+    
+    const modalBuy = useRef(null);
+
+    const modalBuyClose = (e) => {
+      console.log('. ', modalBuy);
+      modalBuy.current.close();
+    }
     
     //const[user, setUser] = useState();
 
@@ -37,12 +46,13 @@ function Header() {
               </NavLink>  
             </div>
             <div className="ColRight">
-                <h2 className="UserName">Hola  {" "}
+                <h2 className="UserName">
                 {
                   userFetched
                     ? ( <strong>
-                          {user.name} {" "}
+                          <em className="UsName">Hola <strong>{user.name}</strong> </em>
                           <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
+                          <span className="BuyPoints" onClick={ ()=> modalBuy.current.open() }>&nbsp;</span>
                           <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span>
                         </strong>
                       ) 
@@ -52,6 +62,10 @@ function Header() {
             </div>       
 
         </div>
+
+        <Modal ref={modalBuy} >
+            <ModalBuy modalBuyClose={modalBuyClose} />
+        </Modal>
     </header>
 
   );

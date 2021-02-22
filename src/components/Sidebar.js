@@ -1,9 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
 import ProductRedeem from "./ProductRedeem";
 import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
+import Modal from './Modal';
+import ModalBuy from './ModalBuy';
 
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -14,17 +16,24 @@ import {useStyles, AntSwitch} from '../data/config';
 function Sidebar({width, height, children}) {
     const { user, userFetched, xPosition, toggleMenuUser, history, historyFetched, filterHistory, OrderHistory } = useContext(AppContext);
 
+    const modalBuy = useRef(null);
+
+    const modalBuyClose = (e) => {
+      //console.log('. ', modalBuy);
+      modalBuy.current.close();
+    }
+
+
     const classes = useStyles();
     //console.log(history.length);
     let ListRedeem;
     if( history.length === 0 ){
       ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
     }else{
-      //books.slice(0,2).map
-      ListRedeem = history.slice(0,3).map(product => (
+      ListRedeem = history.slice(0,3).map( (product, index) => (
       //ListRedeem = history.map(product => (
         <ProductRedeem
-          key={product._id}
+          key={index}
           idOp={product._id}
           idProd={product.productId}
           category={product.category}
@@ -95,6 +104,8 @@ function Sidebar({width, height, children}) {
                         ? ( <strong>
                                 {user.name} {" "}
                                 <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
+                                <span className="BuyPoints" onClick={ ()=> modalBuy.current.open() }>&nbsp;</span>
+                                {/* onClick={ ()=> modalBuy.current.open() } */}
                                 {/* <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span> */}
                             </strong>
                             ) 
@@ -126,7 +137,7 @@ function Sidebar({width, height, children}) {
 
                               {history.length > 0
                                 ? (<Link to="/history">
-                                  <button class="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
+                                  <button className="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
                                 </Link>)
                                 : ''
                               }
@@ -143,6 +154,9 @@ function Sidebar({width, height, children}) {
             </div>
 
         </div>
+        <Modal ref={modalBuy} >
+            <ModalBuy modalBuyClose={modalBuyClose} />
+        </Modal>
     </div>
 
   );
