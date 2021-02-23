@@ -223,7 +223,7 @@ HEADER .container,
 
 .UserName EM{
     font-style: normal;
-    font-size: 14px;
+    font-size: 18px;
 }
 .UserName EM.UsName{
     width: auto;
@@ -260,7 +260,8 @@ HEADER .container,
     text-align:left;
 }
 .MuiPaginationItem-page.Mui-selected {
-    background-color: #6ee8ff !important;
+    color:#FFFFFF !important;
+    background-color: #15caf6 !important;
 }
 .MuiInputBase-root{
     width: 100%;
@@ -270,7 +271,8 @@ HEADER .container,
     margin:15px 15px 0;
 } 
 .BtnFilterPrice.active{
-    background-color: #6ee8ff;
+    background-color: #15caf6;
+    color:#FFF;
 }
 .BtnFilterPrice.Lst{
     margin-right: 0;
@@ -281,6 +283,25 @@ HEADER .container,
 .MuiSelect-select:focus{
     background: none !important;
 }
+.MuiInput-underline:after{
+    border-bottom: 2px solid #15caf6 !important;
+}
+.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover{
+    background-color: #15caf6 !important;
+    color:#FFFFFF;
+}
+.MuiSwitch-track{
+    border-color:#15caf6 !important;
+    background-color: #15caf6 !important;   
+}
+.MuiSwitch-thumb{
+    background-color: ghostwhite !important;
+}
+.MuiPaginationItem-page:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: #15caf6;
+}
+
 
 /*PRODUCTS*/
 .SectProds .container,
@@ -662,12 +683,12 @@ button:active {
     position: absolute;
     right: 15px;
     top: 10px;
-    color: #5e5e5e;
+    color: #000;
     cursor: pointer;
     font-size: 1.25em;
     padding: 7px;
-    background: rgba(255, 255, 255, 0.749);
-    border: 1px solid #c3c0c0;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #FFF;
     border-radius: 50%;
     width: 42px;
     height: 42px;
@@ -679,7 +700,9 @@ button:active {
     display: inline-block;
     text-align: center;
   }
-  
+.modal-close SVG{
+    opacity: 0.8;
+}  
   .modal > .modal-close:hover {
     background: rgba(255, 255, 255, 0.989);
   }
@@ -827,11 +850,169 @@ button:active {
 #RadioPuntos{
     margin: 40px auto 10px;       
 }
+/****************************************************************************
+    LOADER
+*****************************************************************************/
+.loader {
+    /* width: 60px; */
+    width: 100px;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    height: auto;
+    stroke-linecap: round;
+    vertical-align: middle;
+  }
+  
+  circle {
+    fill: none;
+    stroke-width: 3.5;
+    -webkit-animation-name: preloader;
+    animation-name: preloader;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-transform-origin: 170px 170px;
+    transform-origin: 170px 170px;
+    will-change: transform;
+  }
+  circle:nth-of-type(1) {
+    stroke-dasharray: 550px;
+  }
+  circle:nth-of-type(2) {
+    stroke-dasharray: 500px;
+  }
+  circle:nth-of-type(3) {
+    stroke-dasharray: 450px;
+  }
+  circle:nth-of-type(4) {
+    stroke-dasharray: 300px;
+  }
+  circle:nth-of-type(1) {
+    -webkit-animation-delay: -0.15s;
+    animation-delay: -0.15s;
+  }
+  circle:nth-of-type(2) {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+  }
+  circle:nth-of-type(3) {
+    -webkit-animation-delay: -0.45s;
+    animation-delay: -0.45s;
+  }
+  circle:nth-of-type(4) {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+  }
+  
+  @-webkit-keyframes preloader {
+    50% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes preloader {
+    50% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+/*LOader #2 */
+/* * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+  }
+  * *,
+  * *:before,
+  * *:after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    font-size: 10px;
+    box-sizing: border-box;
+  }
+  
+  svg {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    background-color: #f0616e;
+  } 
+  
+  .bg {
+    fill: #f0616e;
+  }
+  */
+  .ellipse {
+    background: #15caf6;
+  }
+  
+  .yv-loader__wrap {
+    filter: url("#gooey");
+    -webkit-filter: url("#gooey");
+    width: auto;
+    display: inline;
+  }
+  
+  .ellipse:nth-child(1) {
+    animation: gooey 1s cubic-bezier(0.59, 0.8, 0.29, 0.1) infinite both alternate-reverse;
+    animation-delay: 0.1666666667s;
+  }
+  @keyframes gooey {
+    to {
+      transform: translate3d(230px, 0, 0);
+    }
+  }
+  .ellipse:nth-child(1) {
+    animation: gooey 1s cubic-bezier(0.59, 0.8, 0.29, 0.1) infinite both alternate-reverse;
+    animation-delay: 0.3333333333s;
+  }
+  @keyframes gooey {
+    to {
+      transform: translate3d(230px, 0, 0);
+    }
+  }
+  .ellipse:nth-child(1) {
+    animation: gooey 1s cubic-bezier(0.59, 0.8, 0.29, 0.1) infinite both alternate-reverse;
+    animation-delay: 0.5s;
+  }
+  @keyframes gooey {
+    to {
+      transform: translate3d(230px, 0, 0);
+    }
+  }
+  .ellipse:nth-child(1) {
+    animation: gooey 1s cubic-bezier(0.59, 0.8, 0.29, 0.1) infinite both alternate-reverse;
+    animation-delay: 0.6666666667s;
+  }
+  @keyframes gooey {
+    to {
+      transform: translate3d(230px, 0, 0);
+    }
+  }
 
-
-
-
+/****************************************************************************
+    MOBILE
+*****************************************************************************/
 @media screen and (max-width: 768px) {
+    .ColLeft .Logo{
+        width: 60px;
+        margin: 0px 0 -6px;
+        display: inline-block;
+    }
     .UserName EM.UsName{
         width: 100%;
         margin: 0 0 5px;
@@ -844,24 +1025,38 @@ button:active {
     }
     .Banner FIGURE{
         height: 120px;
+        background:url(assets/header-x2.png) top center no-repeat;
+        background-size: cover;
+    }
+    .Banner FIGURE IMG{
+        display: none;
     }
     .Banner figcaption{
-        position: relative;
+        width: 100%;
+        padding: 0 20px;
+        position: absolute;
         left: initial;
         bottom: initial;
-        font-size: 35px;
+        font-size: 30px;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
     .UserActions{
-        padding: 35px 0 0px;
+        padding: 35px 0 40px;
     }
     .BtnFilterPrice{
-        width: 46%;
-        margin: 20px 2% 0;
+        width: 30%;
+        margin: 20px 2% 0 !important;
+        height: auto;
+        padding: 10px 0;
+        border-radius: 15px;
     }
     #FilterAlpha{
-        margin: 24px 0px;
-        width: 100%;
+        margin: 0px 0 0 5px;
+        width: auto;
         text-align: right;
+        vertical-align: middle;
     }
     #W-310{
         width: 100%;
@@ -890,10 +1085,43 @@ button:active {
     .modal > .modal-body{
         width: 95vw;
         height: auto;
+        padding: 15px 20px 40px;
+    }
+    .ModalInfo H6{
+        font-size: 25px;
+        line-height: normal;
+    }
+    .ModalInfo P{
+        font-size: 18px;
+    }
+    .ModalInfo .Btn {
+        margin: 0 1%;
+        width: 48%;
     }
     .side-bar{
         width: 100vw;
+        border:1px solid #6ee8ff;
     }
-
+    .side-bar.W-69{
+        width: 100vw !important;
+        transform: translateX(0vw) !important;
+    }
+    .Userinfo .UserName {
+        font-size: 26px;
+    }
+    .HistRedeem H3{
+        width: 40%;
+        font-size: 21px;
+        vertical-align: middle;
+    }
+    #FilterHistory{
+        width: 60%;
+    }
+    .HistRedeem .WrpTitle{
+        padding: 0 0 20px;
+    }
+    .HistRedeem .Product{
+        width: 100% !important;
+    }
     /**/    
 }

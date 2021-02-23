@@ -66,10 +66,13 @@ export const getPoints = (amount) => {
 };
 
 
-/*MATERIAL*/
+/*MATERIAL 1px solid rgba(0, 0, 0, 0.42)*/
 
 export const useStyles = makeStyles((theme) => ({
   formControl: {
+    "& .MuiFormLabel-root.Mui-focused":{
+      color:"#15caf6"
+    },
     margin: theme.spacing(1),
     minWidth: 310,
     width: 310,

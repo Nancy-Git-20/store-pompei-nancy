@@ -61,9 +61,10 @@ function Sidebar({width, height, children}) {
     // }, []);
 
   return (
-
+//<a data-featherlight={ `string${this.props.data.imageUrl}` }>
     <div
-        className="side-bar"
+        // className="side-bar"
+        className={`side-bar W-${xPosition}`}
         style={{
           transform: `translatex(${xPosition}vw)`,
           width: `${width}vw`,

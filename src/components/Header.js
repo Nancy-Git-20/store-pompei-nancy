@@ -5,6 +5,7 @@ import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses 
 import coin from '../assets/icons/coin.svg';
 import Modal from './Modal';
 import ModalBuy from './ModalBuy';
+import Loader from './Loader';
 
 function Header() {
     const { user, userFetched, toggleMenuUser } = useContext(AppContext);
@@ -42,11 +43,12 @@ function Header() {
         <div className="container">
             <div className="ColLeft">
               <NavLink to="/" exact={true} activeClassName="Acti-ve Nav-Link">
-                <h1><img src={logo} alt="Logo"/></h1>
+                <h1><img className="Logo" src={logo} alt="Logo"/></h1>
               </NavLink>  
             </div>
             <div className="ColRight">
                 <h2 className="UserName">
+                {/* <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em> */}
                 {
                   userFetched
                     ? ( <strong>
@@ -56,7 +58,7 @@ function Header() {
                           <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span>
                         </strong>
                       ) 
-                    : <em>cargando usuario...</em>
+                    : <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em>
                 }
                 </h2>
             </div>       
