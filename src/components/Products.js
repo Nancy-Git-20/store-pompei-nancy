@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
-// import Product from './Product';
+import PaginationMat from './PaginationMat';
+import CircleLoader from './CircleLoader';
 // import { Pagination } from "@material-ui/lab";
 // import usePagination from "./Pagination";
 
@@ -52,8 +53,16 @@ function Products() {
                     {
                         //productsFetched && filterTerm === 'Todas'  
                         productsFetched 
-                        ? productsList
-                        :  <em>cargando productos...</em>
+                        ? (
+                            <>
+                            <PaginationMat />
+                            <div className="WrapProds">
+                                {productsList}
+                            </div>    
+                            <PaginationMat />
+                            </>
+                        )  
+                        :  <CircleLoader/>
                     }    
                 </div>
 

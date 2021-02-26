@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
+import Loader from './Loader';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {useStyles, AntSwitch} from '../data/config';
+
 
 function Filters() {
     const { productsFetched, comboCategory, FilterProdcts, filterTerm, OrderProdcts, filterPrice, setFilterPrice, setFilterProducts, filterProducts,
@@ -116,7 +118,7 @@ function Filters() {
                         
                     </>
                 )
-             :  <em>cargando categorias...</em>    
+             :  <div className="WrapLoaderIn"><em><span className="Loader Inline"><Loader/></span>cargando categorias y filtros...</em></div>
             }    
         </div>
     </div>

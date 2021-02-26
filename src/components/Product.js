@@ -2,6 +2,9 @@ import React, {useState, useContext, useRef } from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 import coin from '../assets/icons/coin.svg';
 import localSwitch from '../assets/Switch-x2.png';
+import check from '../assets/icons/check.svg';
+import fail from '../assets/icons/fail.svg';
+
 import Modal from './Modal';
 import ModalBuy from './ModalBuy';
 import LineSlider from './LineSlider';
@@ -14,13 +17,15 @@ function Product(props){
     const { initPoints, redeemProduct, setRedeemProduct, sendPostProduct, postResponse, setPostResponse, sendPostPoints, pointsResponse,
          setPointsResponse, puntosCuentas, setPuntosCuentas } = useContext(AppContext);
     
-    const [pointsAdd, setPointsAdd] = useState('1000');
-    const [warningPoints, setWarningPoints] = useState('');
-    const [saldoPoints, setSaldoPoints] = useState(initPoints);
+    console.log('respuesta en products ', postResponse)     
+    
+    // const [pointsAdd, setPointsAdd] = useState('1000');
+    // const [warningPoints, setWarningPoints] = useState('');
+    // const [saldoPoints, setSaldoPoints] = useState(initPoints);
     // const [saldoRedeem, setSaldoRedeem] = useState(initPoints);
     //console.log('saldoRedeem ', saldoRedeem);
 
-    const prevPoints = usePrevious(saldoPoints);
+    //const prevPoints = usePrevious(saldoPoints);
     //console.log('prevPoints ', prevPoints);
     // const prevSaldoRedeem = usePrevious(saldoRedeem);
     // console.log('prevSaldoRedeem ', prevSaldoRedeem);
@@ -71,7 +76,10 @@ function Product(props){
     // const nuevoSaldoPointsOk = puntosCuentas + parseInt(pointsAdd);
 
     const redeemResetMsgFn = () => {
-        setPostResponse('');
+        setPostResponse({
+            info : '',
+            status: ''
+        });
         setPuntosCuentas(null);
         modalRedeem.current.close();
     }
@@ -116,7 +124,7 @@ function Product(props){
         </figure>
         <div className="Info">
             <p>{category}</p>
-            <h4>{name}: {cost}</h4>
+            <h4>{name} | <strong className="CostDet">{cost} <img src={coin} alt="Points"/> </strong></h4>
         </div>
         <div className="Icons">
             {
@@ -161,7 +169,7 @@ function Product(props){
                 <h5>Redeem now</h5>
                 <div className="ModalInfo">
                     
-                    {postResponse === ''
+                    {postResponse.info === ''
                     ? (
                         <div>
                             <h6>¿Está seguro de canjear el producto <strong>{redeemProduct.name}</strong>?</h6>
@@ -176,9 +184,26 @@ function Product(props){
                         </div>
                     ) : (
                     <div className="Resp">
-                        <p> {postResponse} </p>
-                        <p> Su nuevo saldo es de <strong>{nuevoSaldoRedeemOk}</strong> puntos. </p>
-                        <button className="Btn Cancel" onClick={ () => redeemResetMsgFn() }>Cerrar</button>
+                        
+                        {postResponse.status === 200 ? (
+                        <div>
+                            <div className="icon">
+                                <span><img src={check} alt="Ok"/></span>
+                            </div>
+                            <p> {postResponse.info} </p>
+                            <p> Su nuevo saldo es de <strong>{nuevoSaldoRedeemOk}</strong> puntos. </p>
+                            <button className="Btn Cancel" onClick={ () => redeemResetMsgFn() }>Cerrar</button>
+                        </div>
+                        ) : (
+                        <div>
+                            <div className="icon">
+                                <span><img src={fail} alt="error"/></span>
+                            </div>
+                            <p> {postResponse.info} </p>
+                            <button className="Btn Cancel" onClick={ () => redeemResetMsgFn() }>Cerrar</button>
+                        </div>
+                        ) }
+
                     </div>
                     )}
                 </div>
@@ -186,9 +211,9 @@ function Product(props){
             : ''
         }
 
-<Modal ref={modalBuy} >
-    <ModalBuy modalBuyClose={modalBuyClose} />
-</Modal>
+        <Modal ref={modalBuy} >
+            <ModalBuy modalBuyClose={modalBuyClose} />
+        </Modal>
 
         {/* <Modal ref={modalRedeem}>
             <h5>Redeem now</h5>

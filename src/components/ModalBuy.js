@@ -2,6 +2,8 @@ import React, {useState, useContext, useRef } from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 //import LineSlider from './LineSlider';
 import Radios from './Radios';
+import check from '../assets/icons/check.svg';
+import fail from '../assets/icons/fail.svg';
 
 
 function ModalBuy({modalBuyClose}){
@@ -20,7 +22,10 @@ function ModalBuy({modalBuyClose}){
   
       
       const pointsResetMsgFn = () => {
-          setPointsResponse('');
+          setPointsResponse({
+            info : '',
+            status: ''
+        });
           setPuntosCuentas(null);
           //modalBuy.current.close();
           //TypeError: Cannot read property 'close' of null
@@ -45,7 +50,7 @@ function ModalBuy({modalBuyClose}){
             <h5>Buy points</h5>
             <div className="ModalInfo">
                 
-                {pointsResponse === ''
+                {pointsResponse.info === ''
                 ? (
                     <div>
                         <h6>¿Necesita adquirir más puntos?</h6>
@@ -73,9 +78,31 @@ function ModalBuy({modalBuyClose}){
                     </div>
                 ) : (
                 <div className="Resp">
-                    <p> {pointsResponse} </p>
+                    {/* <p> {pointsResponse} </p>
                     <p>Su nuevo saldo es de <strong>{nuevoSaldoPointsOk}</strong> puntos. </p>
-                    <button className="Btn Cancel" onClick={ () => pointsResetMsgFn() }>Cerrar</button>
+                    <button className="Btn Cancel" onClick={ () => pointsResetMsgFn() }>Cerrar</button> */}
+
+                        {pointsResponse.status === 200 ? (
+                        <div>
+                            <div className="icon">
+                                <span><img src={check} alt="Ok"/></span>
+                            </div>
+                            <p> {pointsResponse.info} </p>
+                            <p>Su nuevo saldo es de <strong>{nuevoSaldoPointsOk}</strong> puntos. </p>
+                            <button className="Btn Cancel" onClick={ () => pointsResetMsgFn() }>Cerrar</button>}
+                        </div>
+                        ) : (
+                        <div>
+                            <div className="icon">
+                                <span><img src={fail} alt="error"/></span>
+                            </div>
+                            <p> {pointsResponse.info} </p>
+                            <button className="Btn Cancel" onClick={ () => pointsResetMsgFn() }>Cerrar</button>
+                        </div>
+                        ) }
+
+
+
                 </div>
                 )}
             </div>

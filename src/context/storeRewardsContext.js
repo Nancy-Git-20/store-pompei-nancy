@@ -23,8 +23,15 @@ const AppProvider = ({ children }) => {
     const[filterHistory, setFilterHistory] = useState(true);
     
     const[redeemProduct, setRedeemProduct] = useState(config.demoProd);
-    const[postResponse, setPostResponse] = useState('');
-    const[pointsResponse, setPointsResponse] = useState('');
+    //const[postResponse, setPostResponse] = useState('');
+    const[postResponse, setPostResponse] = useState({
+      info : '',
+      status: ''
+      });
+    const[pointsResponse, setPointsResponse] = useState({
+      info : '',
+      status: ''
+    });
     const[puntosCuentas, setPuntosCuentas] = useState(null);
 
 
@@ -104,31 +111,50 @@ const AppProvider = ({ children }) => {
       //console.log(productId)
       config.sendRedeemProd(productId)
         .then((response) => {
+          console.log('response', response);
+          console.log('response', response.status);
           console.log('response', response.data.message);
           //setPostResponse(response.message);
-          setPostResponse('Ha canjeado sus puntos con éxito.');
+          //setPostResponse('Ha canjeado sus puntos con éxito.');
+          setPostResponse({
+            info : 'Ha canjeado sus puntos con éxito.',
+            status: response.status
+          });
           setPuntosCuentas(initPoints);
           getUser();
           getHistory();
         })
         .catch((error) => {
           console.log('error', error);
-          setPostResponse('Se ha producido un error.');
+          //setPostResponse('Se ha producido un error.');
+          setPostResponse({
+            info : 'Se ha producido un error.',
+            status: error
+          });
         });
     };
 
     const sendPostPoints = (amount) => {
       config.getPoints(amount)
         .then((response) => {
-          console.log('response', response.data.message);
+          //console.log('response', response.data.message);
           //setPostResponse(response.message);
-          setPointsResponse('Ha actualizado sus puntos con éxito.');
+          //setPointsResponse('Ha actualizado sus puntos con éxito.');
+          setPointsResponse({
+            info : 'Ha canjeado sus puntos con éxito.',
+            status: response.status
+          });
           setPuntosCuentas(initPoints);
           getUser();
         })
         .catch((error) => {
           console.log('error', error);
-          setPointsResponse('Se ha producido un error.');
+          //setPointsResponse('Se ha producido un error.');
+          setPointsResponse({
+            info : 'Se ha producido un error.',
+            status: error
+          });
+          
         });  
     }
 

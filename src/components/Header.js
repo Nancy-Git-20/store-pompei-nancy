@@ -48,7 +48,6 @@ function Header() {
             </div>
             <div className="ColRight">
                 <h2 className="UserName">
-                {/* <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em> */}
                 {
                   userFetched
                     ? ( <strong>

@@ -20,9 +20,10 @@ function Home() {
 
       <Filters/>
       
-      <PaginationMat />
       <Products />
-      <PaginationMat />
+      {/* <PaginationMat />
+      
+      <PaginationMat /> */}
 
     </div>
 
