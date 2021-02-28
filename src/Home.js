@@ -10,7 +10,7 @@ function Home() {
   
   return (
    
-    <div id="AppStore">
+    <div id="AppStoreInn">
      
       <Sidebar width={30} height={"100vh"}/>
        
@@ -21,10 +21,7 @@ function Home() {
       <Filters/>
       
       <Products />
-      {/* <PaginationMat />
       
-      <PaginationMat /> */}
-
     </div>
 
   );

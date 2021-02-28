@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AppContext } from "./context/storeRewardsContext";
 import Header from './components/Header';
 import Banner from './components/Banner';
 import Sidebar from './components/Sidebar';
 import ProductRedeem from "./components/ProductRedeem";
+import Loader from './components/Loader';
 
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -21,10 +22,9 @@ function History() {
   if( history.length === 0 ){
     ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
   }else{
-    
-    ListRedeem = history.map(product => (
+    ListRedeem = history.map((product, index) => (
       <ProductRedeem
-        key={product._id}
+        key={index + '-' + product._id}
         idOp={product._id}
         idProd={product.productId}
         category={product.category}
@@ -33,7 +33,7 @@ function History() {
         name={product.name}
         img={product.img.hdUrl}
       />
-  ));
+    ));
   }
   
   return (
@@ -67,12 +67,13 @@ function History() {
                       </div>
                       <div className="ProdGrid">{ListRedeem} </div>
 
-                      <Link to="/">
+                      <NavLink exact to="/" >
                         <button className="btnAll w40" > Volver </button>
-                      </Link>
+                      </NavLink>
                     </>
                   )  
-                : <em>cargando historial...</em>  
+                : <div className="WrapLoaderIn"><em><span className="Loader Inline"><Loader/></span> cargando historial...</em></div> 
+                
             }
           </div>  
         </div>
@@ -85,3 +86,4 @@ function History() {
 }
 
 export default History;
+{/* <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em>  */}

@@ -6,6 +6,7 @@ import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
 import Modal from './Modal';
 import ModalBuy from './ModalBuy';
+import Loader from './Loader';
 
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -110,7 +111,7 @@ function Sidebar({width, height, children}) {
                                 {/* <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span> */}
                             </strong>
                             ) 
-                        : <em>cargando usuario...</em>
+                        : <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em>
                     }
                 </h2>
             </div>
@@ -137,7 +138,7 @@ function Sidebar({width, height, children}) {
                               <div>{ListRedeem} </div>
 
                               {history.length > 0
-                                ? (<Link to="/history">
+                                ? (<Link to="/history" >
                                   <button className="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
                                 </Link>)
                                 : ''
@@ -145,7 +146,7 @@ function Sidebar({width, height, children}) {
 
                             </>
                           )  
-                        : <em>cargando historial...</em>  
+                        : <em><span className="Loader Inline"><Loader/></span>cargando historial...</em>
                     }
                     {/* {
                         history.length > 0
