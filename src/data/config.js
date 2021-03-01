@@ -67,7 +67,7 @@ export const getPoints = (amount) => {
 };
 
 
-/*MATERIAL 1px solid rgba(0, 0, 0, 0.42)*/
+/*MATERIAL*/
 
 export const useStyles = makeStyles((theme) => ({
   formControl: {

@@ -13,15 +13,13 @@ import {useStyles, AntSwitch} from '../data/config';
 
 
 function Filters() {
-    const { productsFetched, comboCategory, FilterProdcts, filterTerm, OrderProdcts, filterPrice, setFilterPrice, setFilterProducts, filterProducts,
+    const { productsFetched, comboCategory, FilterProdcts, filterTerm, setFilterPrice, setFilterProducts, filterProducts,
       filterAlpha, OrderAlpha} = useContext(AppContext);
-    //console.log('filterAlpha --->', filterAlpha);
-
+    
     const classes = useStyles();
     const [activeFilter, setActiveFilter] = useState('');
 
     const OrderByPrice = (orderType) => {
-      ///console.log('orderType ', orderType);
       let newOrderProds = [];
       setFilterPrice(orderType);
       if(orderType === "Lowest"){
@@ -31,7 +29,6 @@ function Filters() {
         setActiveFilter("Highest");
         newOrderProds = filterProducts.sort((a, b) => parseFloat(b.cost) - parseFloat(a.cost));
       }
-      //console.log('orderProds ', newOrderProds);
       setFilterProducts(newOrderProds);
       
     }
@@ -51,39 +48,20 @@ function Filters() {
                             Categoría:
                             </InputLabel>
                             <Select
-                            labelId="demo-simple-select-placeholder-label-label"
-                            id="demo-simple-select-placeholder-label"
-                            value={filterTerm}
-                            onChange={(e) => FilterProdcts(e.target.value)}
-                            // displayEmpty
-                            className={classes.selectEmpty}
-                            >
-                            <MenuItem value="Todas">Todas</MenuItem>
-                            {comboCategory.map((element, i) => (
-                                //<option key={i} value={element}>{element}</option>
-                                <MenuItem key={i} value={element}>{element}</MenuItem>
-                            ))}
-                            {/* <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem> */}
+                                labelId="demo-simple-select-placeholder-label-label"
+                                id="demo-simple-select-placeholder-label"
+                                value={filterTerm}
+                                onChange={(e) => FilterProdcts(e.target.value)}
+                                className={classes.selectEmpty}
+                                >
+                                <MenuItem value="Todas">Todas</MenuItem>
+                                {comboCategory.map((element, i) => (
+                                    <MenuItem key={i} value={element}>{element}</MenuItem>
+                                ))}
                             </Select>
                             <FormHelperText>Seleccionar categoría</FormHelperText>
                         </FormControl>
-                        {/* <label>Categoría: </label> */}
-                        {/* <select onChange={(e) => getProducts(e.target.value)}>
-                            <option value="Todas"> Todas </option>
-                            {comboCategory.map((element, i) => (
-                                <option key={i} value={element}>{element}</option>
-                            ))}
-                        </select> */}
                         
-                        {/* <select onChange={(e) => FilterProdcts(e.target.value)}>
-                            <option value="Todas"> Todas </option>
-                            {comboCategory.map((element, i) => (
-                                <option key={i} value={element}>{element}</option>
-                            ))}
-                        </select> */}
-
                         <button name="Lowest" className={`BtnFilterPrice ${activeFilter === 'Lowest' ? 'active' : ''}`} onClick={(e) => OrderByPrice(e.target.name)}>Lowest price</button>
                         <button name="Highest" className={`BtnFilterPrice Lst ${activeFilter === 'Highest' ? 'active' : ''}`} onClick={(e) => OrderByPrice(e.target.name)}>Highest price</button>
 
@@ -99,23 +77,6 @@ function Filters() {
                             </Typography>
                         </FormControl>
 
-
-                        {/* <FormControl className={classes.formControl}>
-                            <Typography component="div">
-                                <Grid component="label" container alignItems="center" spacing={1}>
-                                <Grid item>Highest price</Grid>
-                                <Grid item>
-                                    {/* checked={state.checkedC} * /}
-                                    <AntSwitch checked={filterPrice} onChange={(e) => OrderProdcts(e.target.checked)} name="checkedC" />
-                                    {/* <AntSwitch checked={state.checkedC} onChange={handleChange} name="OrderProdsEvt" /> * /}
-                                </Grid>
-                                <Grid item>Lowest price</Grid>
-                                </Grid>
-                            </Typography>
-                        </FormControl> */}
-
-                        
-                        
                     </>
                 )
              :  <div className="WrapLoaderIn"><em><span className="Loader Inline"><Loader/></span>cargando categorias y filtros...</em></div>

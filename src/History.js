@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Banner from './components/Banner';
 import Sidebar from './components/Sidebar';
 import ProductRedeem from "./components/ProductRedeem";
-import Loader from './components/Loader';
+import CircleLoader from './components/CircleLoader';
 
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -14,7 +14,7 @@ import {useStyles, AntSwitch} from './data/config';
 
 function History() {
 
-  const { toggleMenuUser, history, historyFetched, filterHistory, OrderHistory } = useContext(AppContext);
+  const {history, historyFetched, filterHistory, OrderHistory } = useContext(AppContext);
   
   const classes = useStyles();
 
@@ -72,7 +72,7 @@ function History() {
                       </NavLink>
                     </>
                   )  
-                : <div className="WrapLoaderIn"><em><span className="Loader Inline"><Loader/></span> cargando historial...</em></div> 
+                : <CircleLoader/>
                 
             }
           </div>  
@@ -86,4 +86,3 @@ function History() {
 }
 
 export default History;
-{/* <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em>  */}

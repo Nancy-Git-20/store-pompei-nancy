@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ProductRedeem(props) {
-    const {idOp, idProd, category, cost, createDate, name, img} = props;
+    const {idOp, category, cost, createDate, name, img} = props;
     const str = createDate;
     const date = str.substring(0, 10);//YYYY-MM-DD
 

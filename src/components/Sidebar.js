@@ -20,19 +20,16 @@ function Sidebar({width, height, children}) {
     const modalBuy = useRef(null);
 
     const modalBuyClose = (e) => {
-      //console.log('. ', modalBuy);
       modalBuy.current.close();
     }
 
 
     const classes = useStyles();
-    //console.log(history.length);
     let ListRedeem;
     if( history.length === 0 ){
       ListRedeem = <h6>Todavía no ha canjeado <br/> ningún producto.</h6>;
     }else{
       ListRedeem = history.slice(0,3).map( (product, index) => (
-      //ListRedeem = history.map(product => (
         <ProductRedeem
           key={index}
           idOp={product._id}
@@ -43,29 +40,11 @@ function Sidebar({width, height, children}) {
           name={product.name}
           img={product.img.hdUrl}
         />
-    ));
+      ));
     }
-    
-
-    //const [xPosition, setX] = React.useState(99);
-
-    // const toggleMenuUser = () => {
-    //     if (xPosition === 99) {
-    //     setX(70);
-    //     } else {
-    //     setX(99);
-    //     }
-    // };
-
-    // React.useEffect(() => {
-    //     setX(0);
-    // }, []);
-
+  
   return (
-//<a data-featherlight={ `string${this.props.data.imageUrl}` }>
-    <div
-        // className="side-bar"
-        className={`side-bar W-${xPosition}`}
+    <div className={`side-bar W-${xPosition}`}
         style={{
           transform: `translatex(${xPosition}vw)`,
           width: `${width}vw`,
@@ -81,7 +60,6 @@ function Sidebar({width, height, children}) {
         ></button>
 
         <div className="content">
-            {/* <button onClick={() => toggleMenuUser() }>CLOSE X</button> */}
             <div className="CloseBtn" onClick={() => toggleMenuUser() }>
               <svg id="Layer_1" x="0px" y="0px" viewBox="0 0 286.054 286.054" width="40" height="40">
                 <g>
@@ -107,8 +85,7 @@ function Sidebar({width, height, children}) {
                                 {user.name} {" "}
                                 <span className="Points">{user.points} <img src={coin} alt="Puntos"/></span>
                                 <span className="BuyPoints" onClick={ ()=> modalBuy.current.open() }>&nbsp;</span>
-                                {/* onClick={ ()=> modalBuy.current.open() } */}
-                                {/* <span className="Config" onClick={() => toggleMenuUser() }>&nbsp;</span> */}
+                                
                             </strong>
                             ) 
                         : <em><span className="Loader Inline"><Loader/></span>cargando usuario...</em>
@@ -148,11 +125,7 @@ function Sidebar({width, height, children}) {
                           )  
                         : <em><span className="Loader Inline"><Loader/></span>cargando historial...</em>
                     }
-                    {/* {
-                        history.length > 0
-                        ? <button class="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
-                        : ''
-                      }     */}
+                   
             </div>
 
         </div>
@@ -165,12 +138,3 @@ function Sidebar({width, height, children}) {
 }
 
 export default Sidebar;
-
-// export const Sidebar = ({ width, height children }) => {
-
-//     return (
-//         <div className="side-bar" style={{width: width, minHeight: height }}>
-//           <React.Fragment>{children}<React.Fragment/>
-//         </div>
-//     );
-//   };

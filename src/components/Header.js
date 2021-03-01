@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useContext, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
 import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses this image
@@ -13,30 +13,9 @@ function Header() {
     const modalBuy = useRef(null);
 
     const modalBuyClose = (e) => {
-      console.log('. ', modalBuy);
       modalBuy.current.close();
     }
     
-    //const[user, setUser] = useState();
-
-    // useEffect(() => {
-    //     const headers = {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA4ODcxYTdlNzE4NzAwMjBlMzhlZTAiLCJpYXQiOjE2MTExNzE2MTB9.gRqbCL86qsiOXjaSoQeyuhM5e-wjonyGpb4gZqIf6sk"
-    //         }
-    //     } 
-    //     fetch("https://coding-challenge-api.aerolab.co/user/me", headers)
-    //     .then((header) => {
-    //         return header.json();
-    //     })
-    //     .then((body) => {
-    //         setUser(body);
-    //         setftch(true);
-    //     });
-    // },[]);
-
   return (
 
     <header>

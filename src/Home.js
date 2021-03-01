@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Banner from './components/Banner';
 import Filters from './components/Filters';
 import Products from './components/Products';
-import PaginationMat from './components/PaginationMat';
 import Sidebar from './components/Sidebar';
 
 function Home() {
@@ -26,5 +25,4 @@ function Home() {
 
   );
 }
-
 export default Home;

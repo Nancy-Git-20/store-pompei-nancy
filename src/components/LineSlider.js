@@ -16,11 +16,6 @@ const pointMarks = [
   }
 ];
 
-// const handlepuntos = (e, newValue) => {
-//   console.log(newValue);
-// }
-
-
 export default function LineSlider({handlePoints}) {
   
 

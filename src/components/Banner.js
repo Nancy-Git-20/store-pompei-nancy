@@ -3,7 +3,7 @@ import {nameSection} from '../data/config'
 import banner from '../assets/header-x2.png';
 
 function Banner(props) {
-    console.log(props)
+   
     const {bannerAlt,bannerSection} = props;
     const subSection = bannerSection ? '/'+ bannerSection : '';
     

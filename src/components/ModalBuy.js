@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef } from 'react';
+import React, {useState, useContext } from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 //import LineSlider from './LineSlider';
 import Radios from './Radios';
@@ -15,7 +15,7 @@ function ModalBuy({modalBuyClose}){
       const [pointsAdd, setPointsAdd] = useState('1000');
       const [warningPoints, setWarningPoints] = useState('');
       
-      const modalBuy = useRef(null);
+      //const modalBuy = useRef(null);
 
       const nuevoSaldoPoints = initPoints + parseInt(pointsAdd);
       const nuevoSaldoPointsOk = puntosCuentas + parseInt(pointsAdd);
@@ -27,14 +27,11 @@ function ModalBuy({modalBuyClose}){
             status: ''
         });
           setPuntosCuentas(null);
-          //modalBuy.current.close();
-          //TypeError: Cannot read property 'close' of null
           modalBuyClose();
       }
   
       const handlePoints = (e) => {
           const NewPuntos = e.target.value;
-          console.log(typeof NewPuntos, ' ', NewPuntos);
           setPointsAdd(NewPuntos);
           if( pointsAdd === '1000' || pointsAdd === '5000' || pointsAdd === '7500' ){    
               setWarningPoints('');
@@ -71,17 +68,12 @@ function ModalBuy({modalBuyClose}){
                             )
                         }
                         <div className="Actions">
-                            {/* <button className="Btn Cancel" onClick={ () => modalBuy.current.close() }>Cancel</button> */}
                             <button className="Btn Cancel" onClick={modalBuyClose}>Cancel</button>
                             <button className="Btn Ok" onClick={ () => sendPostPoints( parseInt(pointsAdd)) }>OK</button>
                         </div> 
                     </div>
                 ) : (
                 <div className="Resp">
-                    {/* <p> {pointsResponse} </p>
-                    <p>Su nuevo saldo es de <strong>{nuevoSaldoPointsOk}</strong> puntos. </p>
-                    <button className="Btn Cancel" onClick={ () => pointsResetMsgFn() }>Cerrar</button> */}
-
                         {pointsResponse.status === 200 ? (
                         <div>
                             <div className="icon">

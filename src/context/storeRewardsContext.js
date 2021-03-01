@@ -21,9 +21,7 @@ const AppProvider = ({ children }) => {
     const[history, setHistory ] = useState([]);
     const[historyFetched, setHistoryFetched] = useState(false);
     const[filterHistory, setFilterHistory] = useState(true);
-    
     const[redeemProduct, setRedeemProduct] = useState(config.demoProd);
-    //const[postResponse, setPostResponse] = useState('');
     const[postResponse, setPostResponse] = useState({
       info : '',
       status: ''
@@ -44,8 +42,7 @@ const AppProvider = ({ children }) => {
 
     const count = Math.ceil(prodctsCount / PER_PAGE);
     const _DATA = usePagination(filterProducts, PER_PAGE);
-    //console.log('prodctsCount ', prodctsCount )
-
+    
     const handlePageChange = (e, p) => {
         setPage(p);
         _DATA.jump(p);
@@ -70,7 +67,6 @@ const AppProvider = ({ children }) => {
 
     const getUser = () => {
         config.getUser().then((response) => {
-            //console.log('user ', response.data.points)
             setUser(response.data);
             setUserFetched(true);
             setInitPoints(response.data.points)
@@ -79,19 +75,10 @@ const AppProvider = ({ children }) => {
     
     const getProducts = (Term) => {
         config.getProducts().then((response) => {
-          //console.log('response Prods', response.data);
-          // const products = response.data;
-          // if (Term && Term !== "Todas") {
-          //   const filterProd = products.filter((prod) => prod.category === Term);
-          //   setProducts(filterProd);
-          // } else {
-          //   setProducts(products);
-          // }
           setProducts(response.data);
           filterTerm === "Todas" ? setFilterProducts(response.data) : setFilterProducts([]);
           const cate_names = response.data.map((p) => p.category );
           const comboCategory = [...new Set(cate_names)];
-          //console.log('comboCategory ', comboCategory);
           setComboCategory(comboCategory.sort());
           setProductsFetched(true);
       });
@@ -99,23 +86,15 @@ const AppProvider = ({ children }) => {
 
     const getHistory = () => {
       config.getHistory().then((response) => {
-          console.log('getHistory ', response.data);
           const histDesc = response.data.reverse();
           setHistory(histDesc);
-          //setHistory(response.data);
           setHistoryFetched(true);
       });
     };
 
     const sendPostProduct = (productId) => {
-      //console.log(productId)
       config.sendRedeemProd(productId)
         .then((response) => {
-          console.log('response', response);
-          console.log('response', response.status);
-          console.log('response', response.data.message);
-          //setPostResponse(response.message);
-          //setPostResponse('Ha canjeado sus puntos con éxito.');
           setPostResponse({
             info : 'Ha canjeado sus puntos con éxito.',
             status: response.status
@@ -125,8 +104,6 @@ const AppProvider = ({ children }) => {
           getHistory();
         })
         .catch((error) => {
-          console.log('error', error);
-          //setPostResponse('Se ha producido un error.');
           setPostResponse({
             info : 'Se ha producido un error.',
             status: error
@@ -137,9 +114,6 @@ const AppProvider = ({ children }) => {
     const sendPostPoints = (amount) => {
       config.getPoints(amount)
         .then((response) => {
-          //console.log('response', response.data.message);
-          //setPostResponse(response.message);
-          //setPointsResponse('Ha actualizado sus puntos con éxito.');
           setPointsResponse({
             info : 'Ha canjeado sus puntos con éxito.',
             status: response.status
@@ -148,8 +122,6 @@ const AppProvider = ({ children }) => {
           getUser();
         })
         .catch((error) => {
-          console.log('error', error);
-          //setPointsResponse('Se ha producido un error.');
           setPointsResponse({
             info : 'Se ha producido un error.',
             status: error
@@ -160,7 +132,6 @@ const AppProvider = ({ children }) => {
 
 
     const FilterProdcts = (Term) => {
-      //alert(Term);
       if(Term === "Todas"){
         setFilterProducts(products); setFilterTerm("Todas");
         setPage(1);
@@ -169,35 +140,11 @@ const AppProvider = ({ children }) => {
         const newfilterProducts = products.filter((prod) => prod.category === Term);
         setPage(1);
         _DATA.jump(1);
-        //console.log(newfilterProducts);
         setFilterProducts(newfilterProducts); setFilterTerm(Term);
       }
-     
-      //console.log('newfilterProducts ', newfilterProducts);
-
-      // const {hotels, filterh } = this.state;
-      // let ProductsFiltro = [];
-      // ProductsFiltro = products.filter((prod) => prod.category === Term).filter(this.FiltroPrecio);
-      // hotelesFiltro = hotelesFiltro.filter(this.FiltroTamanio);
-      // hotelesFiltro = hotelesFiltro.filter(this.FiltroFechas);
-      // this.setState({ filterh: hotelesFiltro });
-
-      // if(filterTerm === "Todas"){
-      //   setProducts(response.data);
-      //   const cate_names = response.data.map((p) => p.category );
-      //   const comboCategory = [...new Set(cate_names)];
-      //   //console.log('comboCategory ', comboCategory);
-      //   setComboCategory(comboCategory.sort());
-      // }else{
-      //   const newfilterProducts = products.filter((prod) => prod.category === Term);
-      //   //console.log(newfilterProducts);
-      //   setProducts(newfilterProducts);
-      // }
-      // setProductsFetched(true);
     }
    
     const OrderProdcts = (ValueChecked) => {
-      //console.log('activo? ', ValueChecked);
       let isActive = ValueChecked; //->order Ascendente - menor a may
       let orderProds = [];
       setFilterPrice(ValueChecked);
@@ -211,7 +158,6 @@ const AppProvider = ({ children }) => {
     }
 
     const OrderAlpha = (ValueAlpha) => {
-      //console.log('activo? ', ValueAlpha);
       let isActive = ValueAlpha; //->order AZ
       let orderProds = [];
       setFilterAlpha(ValueAlpha);
@@ -233,7 +179,6 @@ const AppProvider = ({ children }) => {
     };
 
     const OrderHistory = (ValueChecked) => {
-      console.log('ordenar Hist?', ValueChecked);
       let isActive = ValueChecked;
       let orderHist = [];
       setFilterHistory(ValueChecked);

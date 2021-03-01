@@ -19,8 +19,7 @@ function PaginationMat() {
     <div className="Paginate">
         <div className="cont-ainer">
             <div className="FullWidth PagInfo">
-                {/* <p>{page === 1 ? 16 : 32 } of {prodctsCount} products </p> */}
-                {/* <p>{prodctsCount <= PER_PAGE ? prodctsCount : PER_PAGE } of {prodctsCount} products </p> */}
+                
                 <p>{Txt}</p>
                 
                 <Pagination
@@ -31,7 +30,7 @@ function PaginationMat() {
                     shape="rounded"
                     onChange={handlePageChange}
                 />
-                {/* <p>{count} {' - '} {page} </p> */}
+                
             </div>
         </div>        
     </div>
