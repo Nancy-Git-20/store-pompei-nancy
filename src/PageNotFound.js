@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import {urlDeploy} from '../data/config';
+import {urlDeploy} from './data/config';
 
 const PageNotFound = () => {
     return (

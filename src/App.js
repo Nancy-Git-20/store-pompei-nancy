@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import AppProvider from './context/storeRewardsContext';
-import {urlDeploy} from '../data/config';
+import {urlDeploy} from './data/config';
 import Home from './Home';
 import History from './History';
 import PageNotFound from './PageNotFound';
