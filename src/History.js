@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { NavLink } from "react-router-dom";
 import { AppContext } from "./context/storeRewardsContext";
+import {urlDeploy} from '../data/config';
 import Header from './components/Header';
 import Banner from './components/Banner';
 import Sidebar from './components/Sidebar';
@@ -67,7 +68,7 @@ function History() {
                       </div>
                       <div className="ProdGrid">{ListRedeem} </div>
 
-                      <NavLink exact to="/" >
+                      <NavLink exact to={urlDeploy}>
                         <button className="btnAll w40" > Volver </button>
                       </NavLink>
                     </>

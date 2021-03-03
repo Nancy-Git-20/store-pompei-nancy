@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import AppProvider from './context/storeRewardsContext';
+import {urlDeploy} from '../data/config';
 import Home from './Home';
 import History from './History';
 import PageNotFound from './PageNotFound';
@@ -14,8 +15,8 @@ function App() {
     <div id="AppStore">
      
       <Switch>
-        <Route exact path="/store-pompei-nancy/" component={Home} />
-        <Route exact path="/store-pompei-nancy/history" component={History} />
+        <Route exact path={urlDeploy} component={Home} />
+        <Route exact path={urlDeploy+"history"} component={History} />
         <Route component={PageNotFound} />
       </Switch>
      

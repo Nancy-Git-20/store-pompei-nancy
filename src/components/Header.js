@@ -1,6 +1,7 @@
 import React, {useContext, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
+import {urlDeploy} from '../data/config';
 import logo from '../assets/aerolab-logo.svg';// Tell Webpack this JS file uses this image
 import coin from '../assets/icons/coin.svg';
 import Modal from './Modal';
@@ -21,7 +22,7 @@ function Header() {
     <header>
         <div className="container">
             <div className="ColLeft">
-              <NavLink to="/" exact={true} activeClassName="Acti-ve Nav-Link">
+              <NavLink to={urlDeploy} exact={true} activeClassName="Acti-ve Nav-Link">
                 <h1><img className="Logo" src={logo} alt="Logo"/></h1>
               </NavLink>  
             </div>

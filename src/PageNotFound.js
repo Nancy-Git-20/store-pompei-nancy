@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import {urlDeploy} from '../data/config';
 
 const PageNotFound = () => {
     return (
@@ -159,7 +160,7 @@ const PageNotFound = () => {
                             </div>
                         </div>
                         </div>
-                        <NavLink to="/" exact={true} activeClassName="Acti-ve Nav-Link">
+                        <NavLink to={urlDeploy} exact={true} activeClassName="Acti-ve Nav-Link">
                             <div className="button">GO HOME</div>
                         </NavLink>
                     </div>

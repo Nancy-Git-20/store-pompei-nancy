@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
 export const nameSection = "Electronics";
+//export const urlDeploy = "/";
+export const urlDeploy = "/store-pompei-nancy/";
 
 export const demoProd = {
   "id":"id",

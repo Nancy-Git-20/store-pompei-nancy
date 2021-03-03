@@ -1,6 +1,7 @@
 import React, {useContext, useRef} from 'react';
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/storeRewardsContext";
+import {urlDeploy} from '../data/config';
 import ProductRedeem from "./ProductRedeem";
 import worker from '../assets/worker.png';
 import coin from '../assets/icons/coin.svg';
@@ -115,7 +116,7 @@ function Sidebar({width, height, children}) {
                               <div>{ListRedeem} </div>
 
                               {history.length > 0
-                                ? (<Link to="/history" >
+                                ? (<Link to={urlDeploy+"history"} >
                                   <button className="btnAll" onClick={() => toggleMenuUser() }> Ver todos los productos canjeados</button>
                                 </Link>)
                                 : ''

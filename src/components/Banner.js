@@ -1,5 +1,5 @@
 import React from 'react';
-import {nameSection} from '../data/config'
+import {nameSection} from '../data/config';
 import banner from '../assets/header-x2.png';
 
 function Banner(props) {
