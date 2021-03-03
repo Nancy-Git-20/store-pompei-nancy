@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { NavLink } from "react-router-dom";
 import { AppContext } from "./context/storeRewardsContext";
-import {urlDeploy} from '../data/config';
+import {urlDeploy} from './data/config';
 import Header from './components/Header';
 import Banner from './components/Banner';
 import Sidebar from './components/Sidebar';
