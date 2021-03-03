@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/store-pompei-nancy/static/css/main.4ef79912.chunk.css",
-    "main.js": "/store-pompei-nancy/static/js/main.9663abb8.chunk.js",
-    "main.js.map": "/store-pompei-nancy/static/js/main.9663abb8.chunk.js.map",
+    "main.js": "/store-pompei-nancy/static/js/main.ff4dab40.chunk.js",
+    "main.js.map": "/store-pompei-nancy/static/js/main.ff4dab40.chunk.js.map",
     "runtime-main.js": "/store-pompei-nancy/static/js/runtime-main.e22c6e7a.js",
     "runtime-main.js.map": "/store-pompei-nancy/static/js/runtime-main.e22c6e7a.js.map",
     "static/js/2.9110792b.chunk.js": "/store-pompei-nancy/static/js/2.9110792b.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.e22c6e7a.js",
     "static/js/2.9110792b.chunk.js",
     "static/css/main.4ef79912.chunk.css",
-    "static/js/main.9663abb8.chunk.js"
+    "static/js/main.ff4dab40.chunk.js"
   ]
 }
