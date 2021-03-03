@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/store-pompei-nancy/static/css/main.4ef79912.chunk.css",
+    "main.js": "/store-pompei-nancy/static/js/main.9663abb8.chunk.js",
+    "main.js.map": "/store-pompei-nancy/static/js/main.9663abb8.chunk.js.map",
+    "runtime-main.js": "/store-pompei-nancy/static/js/runtime-main.e22c6e7a.js",
+    "runtime-main.js.map": "/store-pompei-nancy/static/js/runtime-main.e22c6e7a.js.map",
+    "static/js/2.9110792b.chunk.js": "/store-pompei-nancy/static/js/2.9110792b.chunk.js",
+    "static/js/2.9110792b.chunk.js.map": "/store-pompei-nancy/static/js/2.9110792b.chunk.js.map",
+    "static/js/3.c6e7bc0d.chunk.js": "/store-pompei-nancy/static/js/3.c6e7bc0d.chunk.js",
+    "static/js/3.c6e7bc0d.chunk.js.map": "/store-pompei-nancy/static/js/3.c6e7bc0d.chunk.js.map",
+    "index.html": "/store-pompei-nancy/index.html",
+    "static/css/main.4ef79912.chunk.css.map": "/store-pompei-nancy/static/css/main.4ef79912.chunk.css.map",
+    "static/js/2.9110792b.chunk.js.LICENSE.txt": "/store-pompei-nancy/static/js/2.9110792b.chunk.js.LICENSE.txt",
+    "static/media/Switch-x2.4af212f6.png": "/store-pompei-nancy/static/media/Switch-x2.4af212f6.png",
+    "static/media/aerolab-logo.0a8fb170.svg": "/store-pompei-nancy/static/media/aerolab-logo.0a8fb170.svg",
+    "static/media/App.css": "/store-pompei-nancy/static/media/setting.5f10706c.svg",
+    "static/media/check.63edb656.svg": "/store-pompei-nancy/static/media/check.63edb656.svg",
+    "static/media/coin.b8bc711d.svg": "/store-pompei-nancy/static/media/coin.b8bc711d.svg",
+    "static/media/fail.11360ced.svg": "/store-pompei-nancy/static/media/fail.11360ced.svg",
+    "static/media/worker.b53a8a7e.png": "/store-pompei-nancy/static/media/worker.b53a8a7e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e22c6e7a.js",
+    "static/js/2.9110792b.chunk.js",
+    "static/css/main.4ef79912.chunk.css",
+    "static/js/main.9663abb8.chunk.js"
+  ]
+}
