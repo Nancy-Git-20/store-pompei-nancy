@@ -13,8 +13,9 @@ const AppProvider = ({ children }) => {
     const[productsFetched, setProductsFetched] = useState(false);
     const[filterProducts, setFilterProducts] = useState([]);
     const[filterTerm, setFilterTerm] = useState('Todas');
-    const[filterPrice, setFilterPrice] = useState(true);
+    const[filterPrice, setFilterPrice] = useState('');
     const[filterAlpha, setFilterAlpha] = useState(false);
+    const[activeFilter, setActiveFilter] = useState('');
     const[initPoints, setInitPoints] = useState('');
     const[comboCategory, setComboCategory] = useState([]);
     const[xPosition, setX] = useState(104);
@@ -132,16 +133,43 @@ const AppProvider = ({ children }) => {
 
 
     const FilterProdcts = (Term) => {
-      if(Term === "Todas"){
+      let newfilterProducts = [];
+      if(Term === "Todas" && filterPrice === "Lowest"){
+        newfilterProducts = products.sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
+        setFilterProducts(newfilterProducts); setFilterTerm("Todas");
+        setPage(1);
+        _DATA.jump(1);
+      }  
+      else if(Term === "Todas" && filterPrice === "Highest"){
+        newfilterProducts = products.sort((a, b) => parseFloat(b.cost) - parseFloat(a.cost));
+        setFilterProducts(newfilterProducts); setFilterTerm("Todas");
+        setPage(1);
+        _DATA.jump(1);
+      }
+      else if(Term !== "Todas" && filterPrice === "Lowest"){ 
+        newfilterProducts = products.filter((prod) => prod.category === Term).sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
+        setFilterProducts(newfilterProducts); setFilterTerm(Term);
+        setPage(1);
+        _DATA.jump(1);
+      }
+      else if(Term !== "Todas" && filterPrice === "Highest"){ 
+        newfilterProducts = products.filter((prod) => prod.category === Term).sort((a, b) => parseFloat(b.cost) - parseFloat(a.cost));
+        setFilterProducts(newfilterProducts); setFilterTerm(Term);
+        setPage(1);
+        _DATA.jump(1);
+      }
+      else if(Term === "Todas" && filterPrice === ""){
         setFilterProducts(products); setFilterTerm("Todas");
         setPage(1);
         _DATA.jump(1);
-      }else{
-        const newfilterProducts = products.filter((prod) => prod.category === Term);
-        setPage(1);
-        _DATA.jump(1);
+      } 
+      else if(Term !== "Todas" && filterPrice === ""){
+        newfilterProducts = products.filter((prod) => prod.category === Term);
         setFilterProducts(newfilterProducts); setFilterTerm(Term);
+        setPage(1);
+        _DATA.jump(1); 
       }
+
     }
    
     const OrderProdcts = (ValueChecked) => {
@@ -158,9 +186,11 @@ const AppProvider = ({ children }) => {
     }
 
     const OrderAlpha = (ValueAlpha) => {
-      let isActive = ValueAlpha; //->order AZ
+      let isActive = ValueAlpha; //->order AZ T/F
       let orderProds = [];
       setFilterAlpha(ValueAlpha);
+      setActiveFilter('');
+      setFilterPrice('');
       
       if(isActive){
         orderProds = filterProducts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
@@ -195,7 +225,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={{ user, setUser, userFetched, setUserFetched, products, setProducts, getProducts, productsFetched, setProductsFetched,
       FilterProdcts, filterProducts, filterTerm, setFilterTerm, setFilterProducts, prodctsCount, count, page, PER_PAGE, handlePageChange, productsList,
-      OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, comboCategory, setComboCategory,
+      OrderProdcts, filterPrice, setFilterPrice, initPoints, setInitPoints, filterAlpha, OrderAlpha, activeFilter, setActiveFilter, comboCategory, setComboCategory,
       xPosition, toggleMenuUser, history, setHistory, historyFetched, filterHistory, setFilterHistory, OrderHistory, redeemProduct, setRedeemProduct,
       sendPostProduct, postResponse, setPostResponse, sendPostPoints, pointsResponse, setPointsResponse, puntosCuentas, setPuntosCuentas
       }}>

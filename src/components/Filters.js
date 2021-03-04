@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import { AppContext } from "../context/storeRewardsContext";
 import Loader from './Loader';
 
@@ -13,12 +13,11 @@ import {useStyles, AntSwitch} from '../data/config';
 
 
 function Filters() {
-    const { productsFetched, comboCategory, FilterProdcts, filterTerm, setFilterPrice, setFilterProducts, filterProducts,
+    const { productsFetched, comboCategory, FilterProdcts, filterTerm, activeFilter, setActiveFilter, setFilterPrice, setFilterProducts, filterProducts,
       filterAlpha, OrderAlpha} = useContext(AppContext);
-    
+      
     const classes = useStyles();
-    const [activeFilter, setActiveFilter] = useState('');
-
+    
     const OrderByPrice = (orderType) => {
       let newOrderProds = [];
       setFilterPrice(orderType);
@@ -30,7 +29,6 @@ function Filters() {
         newOrderProds = filterProducts.sort((a, b) => parseFloat(b.cost) - parseFloat(a.cost));
       }
       setFilterProducts(newOrderProds);
-      
     }
     
 

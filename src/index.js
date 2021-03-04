@@ -8,11 +8,10 @@ import reportWebVitals from './reportWebVitals';
 //ReactDOM.createPortal(child, container);
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode></React.StrictMode>
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
 
